@@ -1,8 +1,8 @@
-![logo](media/icon.svg)
+![logo](media/log.svg)
 
-# yoho <small>@Elijah Du</small>
+# yoho <small>Don't worry, this is a tech blog.</small>
 
 > Welcome to Tortuga.
 
 [GitHub](https://github.com/huzza4j)
-[Get Started](#docsify)
+[Get Started](#doc2)
