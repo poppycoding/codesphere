@@ -5,4 +5,4 @@
 > Welcome to Tortuga.
 
 [GitHub](https://github.com/huzza4j)
-[Get Started](#doc2)
+[Get Started](#doc)
