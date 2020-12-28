@@ -14,20 +14,17 @@
     window.$docsify = {
       name: 'doc',
       nameLink: '/blog',
-      logo: 'media/private.svg',
+      logo: 'media/pirate.svg',
 	  loadSidebar: true,
 	  coverpage: true,
 	  repo: 'huzza4j/blog',
-	  homepage: 'home.md',
+	  homepage: '_home.md',
 	  count:{
         countable:true,
         fontsize:'0.9em',
         color:'rgb(90,90,90)',
         language:'english'
       }
-    }
-    if (typeof navigator.serviceWorker !== 'undefined') {
-      navigator.serviceWorker.register('sw.js')
     }
 </script>
 <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
