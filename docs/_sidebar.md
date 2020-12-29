@@ -1,5 +1,6 @@
-- Software Design Principles
-    - [Open Closed Principle](book/desgin-principle/Open-Closed.md)
+- Design Principles
+    - [Guide](book/desgin-principle/guide.md)
+    - [Single Responsibility (SRP)](book/desgin-principle/SRP.md)
 
 - Design Patterns
     - [Strategy](book/desgin-pattern/Strategy.md)
@@ -18,4 +19,4 @@
 
 - Todo
     - [Draft](book/todo/draft.md)
-    - [Jdk-Version](book/todo/Jdk-Version.md)
+    - [JDK Version](book/todo/jdk-version.md)
