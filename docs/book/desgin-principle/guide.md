@@ -1,6 +1,6 @@
 <center>
 
-![Jdk](../../media/solid.svg ':size=20%')
+![Jdk](../../media/solid.png ':size=20%')
 
 ## <font color=red>Software Design Principles</font>
 </center>

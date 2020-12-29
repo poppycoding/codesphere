@@ -1,6 +1,6 @@
 <center>
 
-![Jdk](../../media/jdk.svg ':size=5%')
+![Jdk](../../media/jdk.svg ':size=7%')
 
 ## <font color=red>JDK Version</font>
 </center>
