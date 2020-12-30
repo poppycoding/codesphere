@@ -2,7 +2,7 @@
 
 ![Jdk](../../media/jdk.svg ':size=7%')
 
-## <font color=red>JDK Version</font>
+### <font color=red>JDK Version</font> <!-- {docsify-ignore} -->
 </center>
 
 !> **JDK Beta(1995)**

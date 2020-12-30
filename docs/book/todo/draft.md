@@ -25,7 +25,7 @@ echo "hello"
     - [ ] lim
 
 
-### 你好，世界！ :id=hello-world
+### 你好，世界！ :id=hello-world <!-- {docsify-ignore-all} -->
 
 
 This is a regular paragraph.
@@ -61,3 +61,21 @@ _single underscores_
 **double asterisks**
 
 __double underscores__
+
+<details>
+<summary>展开/收起</summary>
+被折叠的内容
+</details>
+
+<details>
+<summary>展开查看</summary>
+<pre><code>
+System.out.println("Hello to see U!");
+</code></pre>
+</details>
+
+- 1
+  - 3
+* 2
+  * 4
+* 3

@@ -2,7 +2,7 @@
 
 ![Jdk](../../media/solid.png ':size=20%')
 
-## <font color=red>Software Design Principles</font>
+### <font color=red>Software Design Principles</font> <!-- {docsify-ignore} -->
 </center>
 
 !> **单一职责(Single Responsibility Principle)**: 一个类应该负责自己对象的职责,避免嵌入其他逻辑

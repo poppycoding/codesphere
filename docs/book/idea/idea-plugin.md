@@ -2,7 +2,7 @@
 
 ![Jdk](../../media/jetbrains.svg ':size=10%')
 
-## <font color=red>IDEA Plugin</font>
+### <font color=red>IDEA Plugin</font> <!-- {docsify-ignore} -->
 </center>
 
 !> **Dev**
