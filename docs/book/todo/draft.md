@@ -44,6 +44,45 @@ This is a regular paragraph.
 This is another regular paragraph.
 
 
+|  表头   | 表头  |
+|  ----   | ----  |
+| 单元格  | 单元格 |
+| 单元格  | 单元格 |
+
+| 左对齐 | 右对齐 | 居中对齐 |
+|:----  |  ---:  | :---: |
+| 单元格 | 单元格 | 单元格 |
+| 单元格 | 单元格 | 单元格 |
+
+| Syntax      | Description | Test Text     |
+| :---        |    :----:   |          ---: |
+| Header      | Title       | Here's this   |
+| Paragraph   | Text        | And more      |
+
+
+| Syntax      | Description |
+| ----------- | ----------- |
+| Header      | Title       |
+| Paragraph   | Text        |
+
+
+
+<style>
+table th:first-of-type {
+    width: 4cm;
+}
+table th:nth-of-type(2) {
+    width: 150pt;
+}
+table th:nth-of-type(3) {
+    width: 8em;
+}
+</style>
+
+| a | b | c |
+|---|---|---|
+| 列宽 = 3 cm| 列宽 = 5 cm| 列宽 = 8em |
+
 &copy;
 
 I get 10 times more traffic from [Google] [1] than from

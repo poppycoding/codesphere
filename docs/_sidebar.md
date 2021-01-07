@@ -13,11 +13,18 @@
 - Junit
   - [Junit5](book/junit/Junit5.md)
 
-- Intellij
-  - [IDEA Plugin](book/idea/idea-plugin.md)
-
 - JDK
   - [JDK Version](book/jdk/jdk-version.md)
+
+- Chrome
+  - [Google Extension](book/chrome/google-extension.md)
+
+- Intellij
+  - [IDEA Plugin](book/idea/idea-plugin.md)
+  - [IDEA Error](book/idea/idea-error.md)
+
+- Wikipedia
+  - [Release Version](book/wikipedia/release-version.md)    
 
 - Todo
   - [Draft](book/todo/draft.md)
