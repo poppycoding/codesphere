@@ -24,7 +24,7 @@
   - [IDEA Error](book/idea/idea-error.md)
 
 - Wikipedia
-  - [Release Version](book/wikipedia/release-version.md)    
+  - [Release Train](book/wikipedia/release-train.md)    
 
 - Todo
   - [Draft](book/todo/draft.md)

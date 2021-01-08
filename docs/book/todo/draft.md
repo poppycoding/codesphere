@@ -93,6 +93,22 @@ I get 10 times more traffic from [Google] [1] than from
 [3]: http://search.msn.com/    "MSN Search"
 
 
+居中：
+<center>月是故乡明</center>
+左对齐：
+<p align="left">月是故乡明</p>
+右对齐：
+<p align="right">月是故乡明</p>
+
+<font face="黑体" size=2>我是黑体2号字</font>
+<font face="黑体" size=3>我是黑体3号字</font>
+
+用爱劈开黑暗，像一道曙光，
+<hr/>
+是非真假无法判断，不如坚强。
+<hr/>
+
+
 *single asterisks*
 
 _single underscores_

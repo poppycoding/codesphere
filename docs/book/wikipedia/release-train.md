@@ -2,8 +2,12 @@
 
 ![Jdk](../../media/release.png ':size=30%')
 
-### <font color=red>Release Version</font> <!-- {docsify-ignore} -->
+### <font color=red>Release Train Naming Convention</font> <!-- {docsify-ignore} -->
 </center>
+
+<p align="right">
+<font face="Segoe Print" color="green" size="1"><u>origin: https://mp.weixin.qq.com/s/ZoUG9h1TndW2QpnPyGeIQA</u></font>
+</p>
 
 !> **Agile Release Train**
 
@@ -43,7 +47,7 @@ Release Train字面意义就是"火车发布", 就像生活中的车站发车一
 
 !> **Calendar Versioning**
 
-[Calendar Versioning][2] 定义了一套版本号规则的标准, 日历化版本号: MAJOR.MINOR.MICRO-MODIFIER (主要.次要.微小-可选修饰符)
+[Calendar Versioning][2] 定义了一套版本号规则的标准, 日历化版本号: MAJOR.MINOR.MICRO-[MODIFIER] (主要.次要.微小-可选修饰符)
 
 日历化版本不是基于任意数字,而是基于项目发布日期的版本控制约定. Versioning gets better with time!
 
@@ -68,35 +72,51 @@ Spring Release Train版本号都是按照字母表顺序来发布, 如2020之前
 
 [Spring Cloud][3]
 
+- Spring Cloud **<font color=red>Angel</font>**
+- Spring Cloud **<font color=red>Brixton</font>**
+- Spring Cloud **<font color=red>Camden</font>**
+- Spring Cloud **<font color=red>Dalston</font>**
+- Spring Cloud **<font color=red>Edgware</font>**
+- Spring Cloud **<font color=red>Finchley</font>**
+- Spring Cloud **<font color=red>Greenwich</font>**
+
+
+[Spring Data][4]
+
+- Spring Data **<font color=red>Arora</font>**  
+- ...                                     
+- Spring Data **<font color=red>Dalston</font>** 
+- ...                                     
+- Spring Data **<font color=red>Hoxton</font>** 
+
+!> **Spring Release Train Change On 2020**
+
+从[2020][5]开始, Spring Team采用日历化风格的版本来控制release train, 规则: YYYY.MINOR.MICRO-[MODIFIER]
+- YYYY: 年份全称. 2020
+- MINOR: 辅助版本号(一般升级些非主线功能), 在当前年内从0递增
+- MICRO: 补丁版本号(一般修复些bug), 在当前年内从0递增
+- MODIFIER:[非必填]. 后缀,它用于修饰一些关键节点
+  - M数字: 里程碑版本, 如2020.0.0-M1, 2020.0.0-M2
+  - RC数字: 发布候选版本, 如2020.0.0-RC1, 2020.0.0-RC2
+  - SNAPSHOT: 快照版本(后无数字哦), 如2020.0.0-SNAPSHOT
+  - 未填: 正式版本(可放心使用, 相当于之前的xxx-RELEASE), 2020.0.0
+    
+对于project module版本, 仍然采用Semantic Versioning语义化版本, 但是做了微小变更, 规则: MAJOR.MINOR.PATCH[-MODIFIER]
 <style>
 table th:first-of-type {
     width: 7cm;
 }
 table th:nth-of-type(2) {
-    width: 4cm;
+    width: 7cm;
+    width: 7cm;
 }
 </style>
-
-|  Release Train                           | Date    |
-|  :----                                   | :----:  |
-| Spring Cloud **<font color=red>Angel**   | 2015-06 |
-| ...                                      | ...     |
-| Spring Cloud **<font color=red>Dalston** | 2017-04 |
-| ... ...                                  | ...     |
-| Spring Cloud **<font color=red>Hoxton**  | 2019-11 |
-
-[Spring Data][4]
-
-|  Release Train                          | Date    |
-|  :----                                  | :----:  |
-| Spring Data **<font color=red>Arora**   | 2015-06 |
-| ...                                     | ...     |
-| Spring Data **<font color=red>Dalston** | 2017-04 |
-| ...                                     | ...     |
-| Spring Data **<font color=red>Hoxton**  | 2019-11 |
-
+| Before      | After     |
+| :----:      | :----:    |
+| 3.0.0.RC1   | 3.0.0-RC1 |
 
 [1]: https://semver.org/ "语义化版本"
 [2]: https://calver.org/ "日历化版本"
 [3]: https://spring.io/projects/spring-cloud#learn "spring-cloud"
 [4]: https://spring.io/projects/spring-data#learn "spring-data"
+[5]: https://github.com/spring-cloud/spring-cloud-release/wiki/Release-Train-Naming-Convention "naming-change"
