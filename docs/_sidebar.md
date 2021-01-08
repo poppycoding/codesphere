@@ -15,6 +15,7 @@
 
 - JDK
   - [JDK Version](book/jdk/jdk-version.md)
+  - [Java Doc](book/jdk/jdk-doc.md)
 
 - Chrome
   - [Google Extension](book/chrome/google-extension.md)
