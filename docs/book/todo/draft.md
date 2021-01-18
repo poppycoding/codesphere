@@ -1,6 +1,6 @@
 ![logo](https://docsify.js.org/_media/icon.svg ':size=5%')
 
-!> 一段重要的内容，可以和其他 **Markdown** 语法混用
+!> 一段重要的内容,可以和其他 **Markdown** 语法混用
 
 ?> **<font color=red>JDK Beta(1995)</font>**
 
@@ -25,7 +25,7 @@ echo "hello"
     - [ ] lim
 
 
-### 你好，世界！ :id=hello-world <!-- {docsify-ignore-all} -->
+### 你好,世界！ :id=hello-world <!-- {docsify-ignore-all} -->
 
 
 This is a regular paragraph.
@@ -103,9 +103,9 @@ I get 10 times more traffic from [Google] [1] than from
 <font face="黑体" size=2>我是黑体2号字</font>
 <font face="黑体" size=3>我是黑体3号字</font>
 
-用爱劈开黑暗，像一道曙光，
+用爱劈开黑暗,像一道曙光,
 <hr/>
-是非真假无法判断，不如坚强。
+是非真假无法判断,不如坚强.
 <hr/>
 
 

@@ -4,7 +4,5 @@
 
 > :skull_and_crossbones: Welcome to Tortuga :skull_and_crossbones:
 
-- :smiling_imp: **Don't worry, This is a blog** :smiling_imp:
-
-[GitHub](https://github.com/huzza4j)
+[GitHub](https://github.com/oakparkoak)
 [Get Started](_home.md)

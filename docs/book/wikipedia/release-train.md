@@ -6,7 +6,7 @@
 </center>
 
 <p align="right">
-<font face="Segoe Print" color="green" size="1"><u>origin: https://mp.weixin.qq.com/s/ZoUG9h1TndW2QpnPyGeIQA</u></font>
+<font face="Segoe Print" color="green" size="1">reference origin: https://mp.weixin.qq.com/s/ZoUG9h1TndW2QpnPyGeIQA</font>
 </p>
 
 !> **Agile Release Train**
