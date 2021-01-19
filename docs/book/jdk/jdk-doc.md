@@ -6,11 +6,13 @@
 </center>
 
 <p align="right">
-<font face="Segoe Print" color="green" size="1"> reference origin: https://www.baeldung.com/javadoc</font>
-</p>
-
-<p align="right">
-<font face="Segoe Print" color="green" size="1"> reference origin: https://blog.joda.org/2012/11/javadoc-coding-standards.html</font>
+<a href="https://blog.joda.org/2012/11/javadoc-coding-standards.html" target="_blank"> 
+<font face="Arial" color="green" size="1">click-to-origin-1</font>   
+</a>
+&nbsp;/&nbsp;
+<a href="https://www.baeldung.com/javadoc" target="_blank"> 
+<font face="Arial" color="green" size="1">origin-2</font>  
+</a>
 </p>
 
 > ##### <font color=green>Overview</font>
