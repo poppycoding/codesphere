@@ -7,11 +7,10 @@
 
 <p align="right">
 <a href="https://blog.joda.org/2012/11/javadoc-coding-standards.html" target="_blank"> 
-<font face="Arial" color="green" size="1">click-to-origin-1</font>   
+<font face="Arial" color="green" size="1">| origin-1 | </font>   
 </a>
-&nbsp;/&nbsp;
 <a href="https://www.baeldung.com/javadoc" target="_blank"> 
-<font face="Arial" color="green" size="1">origin-2</font>  
+<font face="Arial" color="green" size="1">origin-2 |</font>  
 </a>
 </p>
 
