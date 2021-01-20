@@ -1,6 +1,6 @@
 <center>
 
-![Jdk](../../media/jetbrains.svg ':size=10%')
+![logo](../../media/idea/logo.svg ':size=10%')
 
 ### <font color=red>IDEA Plugin</font> <!-- {docsify-ignore} -->
 </center>

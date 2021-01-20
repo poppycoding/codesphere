@@ -1,24 +1,24 @@
 <center>
 
-![Jdk](../../media/release.png ':size=30%')
+![release](../../media/wikipedia/release.png ':size=30%')
 
 ### <font color=red>Release Train Naming Convention</font> <!-- {docsify-ignore} -->
 </center>
 
 <p align="right">
-<a href="https://mp.weixin.qq.com/s/ZoUG9h1TndW2QpnPyGeIQA" target="_blank"> 
+<a href="https://developer.aliyun.com/article/778402" target="_blank"> 
 <font face="Arial" color="green" size="1">| origin-1 |</font>  
 </a>
 </p>
 
 !> **Agile Release Train**
 
-Release Train字面意义就是"火车发布", 就像生活中的车站发车一样, 在软件行业, 项目通常也会定时定点发布. 尤其是对
+Release Train 字面意义就是"火车发布", 就像生活中的车站发车一样, 在软件行业, 项目通常也会定时定点发布. 尤其是对
 于复杂的项目, 系统规模越大, 加入的包越多, 就越有可能进入软件管理的领域里的"依赖地狱", 版本混乱导致新版本难以发
-布; 而release train就是软件行业一种发布模式, 可以有效保证软件产品的持续迭代, 保证产品发布的稳定及正确性.
+布; 而 Release Train 就是软件行业一种发布模式, 可以有效保证软件产品的持续迭代, 保证产品发布的稳定及正确性.
 
-例如: 规定每个月的一号为发布日期, 这个时间点就作为各个团队的deadline做好统一的发车准备, 如果中间某一个团队出现意外
-不能按点ready, 那就及时下车, 等待下一趟车, 并通知整个项目尽早缩小影响范围.
+例如: 规定每个月的一号为发布日期, 这个时间点就作为各个团队的 deadline 做好统一的发车准备, 如果中间某一个团队
+出现意外不能按点 ready, 那就及时下车, 等待下一趟车, 并通知整个项目尽早缩小影响范围.
 
 这种发布模式都会涉及到版本的命名, 虽然命名方式不同, 但是都有一种类似递增的规律:
 - IOS 14, IOS 14.1, IOS14.1.1
@@ -27,8 +27,8 @@ Release Train字面意义就是"火车发布", 就像生活中的车站发车一
 
 !> **Project Module**
 
-一个大的项目按照release train发布, 内部会涉及不同的模块, 而每一个模块的就是对应一个project module, 以最新版
-本Spring Data 2020.0.2版本为例, 内含有多个Project Module模块: 
+一个大的项目按照 Release Train 发布, 内部会涉及不同的模块, 而每一个模块的就是对应一个 Project Module, 
+以最新版本 Spring Data 2020.0.2 版本为例, 内含有多个 Project Module 模块: 
 - Spring Data JDBC 2.1.2
 - Spring Data JPA 2.4.2
 - Spring Data MongoDB 3.1.2
@@ -38,20 +38,20 @@ Release Train字面意义就是"火车发布", 就像生活中的车站发车一
 
 [Semantic Version][1] 定义了一套版本号规则的标准, 语义化版本号: X.Y.Z (主版本号.次版本号.修订号)
 
-当主版本号更新时, 次版本号和补丁号都要归零；次版本号更新时补丁号归零, 递增规则如下: 
-- 主版本号: 当你做了不兼容的API修改 (改变很大)
+当主版本号更新时, 次版本号和补丁号都要归零; 次版本号更新时补丁号归零, 递增规则如下: 
+- 主版本号: 当你做了不兼容的 API 修改 (改变很大)
 - 次版本号: 当你做了向下兼容的功能性新增 (改变不大)
-- 修订号: 当你做了向下兼容的问题修正 (bug修复,代码优化等)
+- 修订号: 当你做了向下兼容的问题修正 (bug 修复, 代码优化等)
 
-也既是, 修复问题但不影响API时, 递增修订号; API保持向下兼容的新增及修改时, 递增次版本号; 进行不向下兼容的修改时, 
-递增主版本号. 版本号均从零开始, 但是当主版本号为零时0.x.y (0.1.0), 代表了软件处于开发初始阶段, 而1.0.0的版本号
-则代表了一个稳定的公共API.
+也既是, 修复问题但不影响 API 时, 递增修订号; API 保持向下兼容的新增及修改时, 递增次版本号; 
+进行不向下兼容的修改时, 递增主版本号. 版本号均从零开始, 但是当主版本号为零时 0.x.y (0.1.0), 
+代表了软件处于开发初始阶段, 而 1.0.0 的版本号则代表了一个稳定的公共 API.
 
 !> **Calendar Versioning**
 
 [Calendar Versioning][2] 定义了一套版本号规则的标准, 日历化版本号: MAJOR.MINOR.MICRO-[MODIFIER] (主要.次要.微小-可选修饰符)
 
-日历化版本不是基于任意数字,而是基于项目发布日期的版本控制约定. Versioning gets better with time!
+日历化版本不是基于任意数字, 而是基于项目发布日期的版本控制约定. Versioning gets better with time!
 
 整体意义与语义化版本号类似:
 - 主要: 主要版本号, 版本中的第一个数字
@@ -70,7 +70,7 @@ Release Train字面意义就是"火车发布", 就像生活中的车站发车一
 
 !> **Spring Release Train**
 
-Spring Release Train版本号都是按照字母表顺序来发布, 如2020之前的版本:
+Spring Release Train 版本号都是按照字母表顺序来发布, 如 2020 之前的版本:
 
 [Spring Cloud][3] 伦敦地铁站: 
 
@@ -94,17 +94,17 @@ Spring Release Train版本号都是按照字母表顺序来发布, 如2020之前
 
 !> **Spring Release Train Change On 2020**
 
-从[2020][5]开始, Spring Team采用日历化风格的版本来控制release train, 规则: YYYY.MINOR.MICRO-[MODIFIER]
+从[2020][5]开始, Spring Team 采用日历化风格的版本来控制 Release Train, 规则: YYYY.MINOR.MICRO-[MODIFIER]
 - YYYY: 年份全称. 2020
-- MINOR: 辅助版本号(一般升级些非主线功能), 在当前年内从0递增
-- MICRO: 补丁版本号(一般修复些bug), 在当前年内从0递增
+- MINOR: 辅助版本号 (一般升级些非主线功能), 在当前年内从0递增
+- MICRO: 补丁版本号 (一般修复些bug), 在当前年内从0递增
 - MODIFIER:[非必填]. 后缀,它用于修饰一些关键节点
-  - M数字: 里程碑版本, 如2020.0.0-M1, 2020.0.0-M2
-  - RC数字: 发布候选版本, 如2020.0.0-RC1, 2020.0.0-RC2
-  - SNAPSHOT: 快照版本(后无数字哦), 如2020.0.0-SNAPSHOT
-  - 未填: 正式版本(可放心使用, 相当于之前的xxx-RELEASE), 2020.0.0
+  - M 数字: 里程碑版本, 如2020.0.0-M1, 2020.0.0-M2
+  - RC 数字: 发布候选版本, 如2020.0.0-RC1, 2020.0.0-RC2
+  - SNAPSHOT: 快照版本, 如2020.0.0-SNAPSHOT
+  - 未填: 正式版本 (可放心使用, 相当于之前的xxx-RELEASE), 2020.0.0
     
-对于project module版本, 仍然采用Semantic Versioning语义化版本, 但是做了微小变更, 规则: MAJOR.MINOR.PATCH[-MODIFIER]
+对于 Project Module, 仍然采用 Semantic Versioning 语义化版本, 但是做了微小变更, 规则: MAJOR.MINOR.PATCH[-MODIFIER]
 <style>
 table th:first-of-type {
     width: 7cm;

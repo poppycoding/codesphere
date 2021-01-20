@@ -1,6 +1,6 @@
 <center>
 
-![Jdk](../../media/jdk.svg ':size=7%')
+![logo](../../media/jdk/logo.svg ':size=7%')
 
 ### <font color=red>Java Doc Best Practice</font> <!-- {docsify-ignore} -->
 </center>

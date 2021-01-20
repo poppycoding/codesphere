@@ -1,5 +1,5 @@
 - Design Principles
-  - [Guide](book/desgin-principle/guide.md)
+  - [Overview](book/desgin-principle/overview.md)
   - [SRP](book/desgin-principle/SRP.md)
 
 - Design Patterns

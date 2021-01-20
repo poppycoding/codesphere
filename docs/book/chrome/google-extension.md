@@ -1,6 +1,6 @@
 <center>
 
-![Jdk](../../media/chrome.svg ':size=7%')
+![logo](../../media/chrome/logo.svg ':size=7%')
 
 ### <font color=red>Chrome Extension</font> <!-- {docsify-ignore} -->
 </center>
