@@ -4,7 +4,7 @@
 </center>
 
 <p align="right">
-<a href="https://www.loggly.com/ultimate-guide/java-logging-basics/" target="_blank"> 
+<a href="http://logback.qos.ch/manual/index.html" target="_blank"> 
 <font face="Arial" color="green" size="1">| origin-1 |</font>  
 </a>
 </p>
