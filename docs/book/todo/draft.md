@@ -65,7 +65,9 @@ This is another regular paragraph.
 | Header      | Title       |
 | Paragraph   | Text        |
 
+1.git pull origin master --allow-unrelated-histories
 
+2.git branch --set-upstream-to=origin/master master
 
 <style>
 table th:first-of-type {
