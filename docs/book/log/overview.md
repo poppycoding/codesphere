@@ -112,17 +112,16 @@ WARN - 警告提示, ERROR - 打印错误和异常信息, 可以使用这个级�
 
 - Spring 框架默认使用 Apache JCL + Log4j 作为日志输出:
 
-![framework](../../media/log/spring.png ':size=50%')
+![spring](../../media/log/spring.png)
 
   
 - SpringBoot 默认使用 Slf4j + Logback 作为日志输出:
 
-![framework](../../media/log/springboot.png ':size=50%')
+![springboot](../../media/log/springboot.png)
 
+> ##### <font color=green>Reference</font>
 
-> ##### <font color=green>Recommend</font>
-
-- Slf4j + Logback
+<font color=green>参考原文链接: [origin-1][8] / [origin-2][9] / [origin-3][10]</font>
 
 
 [1]: https://logging.apache.org/log4j/1.2/manual.html "Log4j"
@@ -132,6 +131,9 @@ WARN - 警告提示, ERROR - 打印错误和异常信息, 可以使用这个级�
 [5]: http://logback.qos.ch/index.html "Logback"
 [6]: http://logging.apache.org/log4j/2.x/manual/index.html "Log4j2"
 [7]: https://tinylog.org/v2/ "Tinylog"
+[8]: https://www.loggly.com/ultimate-guide/java-logging-basics/ "8"
+[9]: https://segmentfault.com/a/1190000038491835 "9"
+[10]: https://blog.csdn.net/bjchenxu/article/details/108031101 "10"
 
 
 

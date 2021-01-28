@@ -8,6 +8,9 @@
 <font face="Arial" color="green" size="1">| origin-1 |</font>  
 </a>
 <a href="https://blog.csdn.net/bjchenxu/article/details/108031101" target="_blank"> 
+<font face="Arial" color="green" size="1">| origin-2 | </font>   
+</a>
+<a href="https://albenw.github.io/posts/e31dfd0e/" target="_blank"> 
 <font face="Arial" color="green" size="1">| origin-3 | </font>   
 </a>
 </p>
@@ -25,7 +28,7 @@ Simple Logging Facade for Java 是由 Ceki Gulcu 设计的一个日志抽象层.
 就进入了适配层, 会自动选择 JUL, Log4j, JCL 等具体实现的日志框架. 而 Logback 本就是 Slf4j 默认实现, 
 因此也不需要 Slf4j-xx 来适配.
 
-![history](../../media/log/slf4j.png ':size=75%')
+![slf4j](../../media/log/slf4j.png ':size=75%')
 
 > ##### <font color=green>Bridge & Adapt</font>
  
@@ -47,7 +50,7 @@ Simple Logging Facade for Java 是由 Ceki Gulcu 设计的一个日志抽象层.
   - slf4j-log4j12: 把请求到 Slf4j 的日志委托到 log4j 来处理
   - slf4j-jdk14: 把请求到 Slf4j 的日志委托到 JUL 来处理
     
-![history](../../media/log/bridge.png)
+![bridge](../../media/log/bridge.png)
 
 > ##### <font color=green>Infinite Loop</font>
 
@@ -58,18 +61,18 @@ Simple Logging Facade for Java 是由 Ceki Gulcu 设计的一个日志抽象层.
 
 这时就会导致 StackOverflowError:
 
-```textgetILoggerFactory
-Exception in thread "main" java.lang.StackOverflowError
-  at java.lang.String.hashCode(String.java:1482)
-  at java.util.HashMap.get(HashMap.java:300)
-  at org.slf4j.impl.JCLLoggerFactory.getLogger(JCLLoggerFactory.java:67)
-  at org.slf4j.LoggerFactory.getLogger(LoggerFactory.java:249)
-  at org.apache.commons.logging.impl.SLF4JLogFactory.getInstance(SLF4JLogFactory.java:155)
-  at org.apache.commons.logging.LogFactory.getLog(LogFactory.java:289)
-  at org.slf4j.impl.JCLLoggerFactory.getLogger(JCLLoggerFactory.java:69)
-  at org.slf4j.LoggerFactory.getLogger(LoggerFactory.java:249)
-  at org.apache.commons.logging.impl.SLF4JLogFactory.getInstance(SLF4JLogFactory.java:155)
-  subsequent lines omitted...
+```text
+SLF4J: Detected both log4j-over-slf4j.jar AND bound slf4j-log4j12.jar on the class path, preempting StackOverflowError. 
+SLF4J: See also http://www.slf4j.org/codes.html#log4jDelegationLoop for more details.
+Exception in thread "main" java.lang.ExceptionInInitializerError
+	at org.slf4j.impl.StaticLoggerBinder.<init>(StaticLoggerBinder.java:72)
+	at org.slf4j.impl.StaticLoggerBinder.<clinit>(StaticLoggerBinder.java:45)
+	at org.slf4j.LoggerFactory.bind(LoggerFactory.java:150)
+	at org.slf4j.LoggerFactory.performInitialization(LoggerFactory.java:124)
+	at org.slf4j.LoggerFactory.getILoggerFactory(LoggerFactory.java:417)
+	at org.slf4j.LoggerFactory.getLogger(LoggerFactory.java:362)
+	at org.slf4j.LoggerFactory.getLogger(LoggerFactory.java:388)
+	at ta.main(ta.java:12)
 ```
 
 !> **<font color=red>因此, 需要避免同一时间出现下列组合:</font>**
@@ -92,7 +95,6 @@ import org.slf4j.LoggerFactory;
 
 public class Demo {
     private Logger logger = LoggerFactory.getLogger(Demo.class);
-    
     // ... ...
 }
 ```
@@ -119,7 +121,6 @@ public final class LoggerFactory {
         return logger;
     }
 
-    // getILoggerFactory
     public static Logger getLogger(String name) {
         ILoggerFactory iLoggerFactory = getILoggerFactory();
         return iLoggerFactory.getLogger(name);
@@ -130,7 +131,7 @@ public final class LoggerFactory {
 - **GetILoggerFactory**
 
 LoggerFactory 是关键, 这里通过双重检查锁机制保证只初始化一次, 当初始化完成之后的状态为 SUCCESSFUL, 
-则通过 StaticLoggerBinder 获取到具体的 LoggerFactory.
+则通过 StaticLoggerBinder 获取到具体的 LoggerFactory; 那么关键就在于 StaticLoggerBinder 的初始化. 
 ```java
 public final class LoggerFactory {
 
@@ -147,7 +148,6 @@ public final class LoggerFactory {
         }
         switch (INITIALIZATION_STATE) {
             case SUCCESSFUL_INITIALIZATION:
-                // getLoggerFactory
                 return StaticLoggerBinder.getSingleton().getLoggerFactory();
             case NOP_FALLBACK_INITIALIZATION:
                 return NOP_FALLBACK_FACTORY;
@@ -169,11 +169,10 @@ public final class LoggerFactory {
 }    
 ```
 
-- **bind**
+- **Bind**
 
 初始化最终会走到 bind 方法, 这里绑定了具体 StaticLoggerBinder, 编译时期自动寻找 classpath 下面所有符合条件的 
 StaticLoggerBinder 单例类, 然后修改初始化状态为 SUCCESSFUL_INITIALIZATION.
-
 ```java
 public final class LoggerFactory {
 
@@ -209,9 +208,122 @@ public final class LoggerFactory {
 }
 ```
 
-这里额外关注几个方法:
+- **StaticLoggerBinder**
 
-- findPossibleStaticLoggerBinderPathSet: 通过classloader 寻找到所有 StaticLoggerBinder.class 文件
+![adapt](../../media/log/adapt.png ':size=75%')
+
+当执行完初始化, 根据状态 SUCCESSFUL_INITIALIZATION 进去 Switch 块, 利用实际寻找的 StaticLoggerBinder 
+来完成获取不同日志的 LoggerFactory, 同时这些 Factory 都实现了 SLF4J 的 ILoggerFactory, 重写了 GetLogger
+这样就可以完成适配, 虽然调用了 SLF4J 的 getLogger 方法, 但是内部获取到的都是具体实现日志 Logger. 如: 
+
+**Logback (LoggerContext): StaticLoggerBinder.getSingleton().getLoggerFactory().getLogger()**
+```java
+public class StaticLoggerBinder implements LoggerFactoryBinder {
+
+    // ... ...
+
+    public static StaticLoggerBinder getSingleton() {
+        return SINGLETON;
+    }
+    // ... ...
+    
+    public ILoggerFactory getLoggerFactory() {
+        if (!initialized) {
+            return defaultLoggerContext;
+        }
+
+        if (contextSelectorBinder.getContextSelector() == null) {
+            throw new IllegalStateException("contextSelector cannot be null. See also " + NULL_CS_URL);
+        }
+        return contextSelectorBinder.getContextSelector().getLoggerContext();
+    }
+}
+
+public class LoggerContext extends ContextBase implements ILoggerFactory, LifeCycle {
+    
+    // ... ...
+
+    @Override
+    public final Logger getLogger(final String name) {
+        // ... ...
+    }
+}
+```
+
+**JDK14LoggerFactory: StaticLoggerBinder.getSingleton().getLoggerFactory().getLogger()**
+```java
+public class StaticLoggerBinder implements LoggerFactoryBinder {
+    private final ILoggerFactory loggerFactory;
+
+    // ... ...
+
+    public static final StaticLoggerBinder getSingleton() {
+        return SINGLETON;
+    }
+    // ... ...
+    
+    private StaticLoggerBinder() {
+        loggerFactory = new org.slf4j.impl.JDK14LoggerFactory();
+    }
+
+    public ILoggerFactory getLoggerFactory() {
+        return loggerFactory;
+    }
+}
+
+public class JDK14LoggerFactory implements ILoggerFactory {
+
+    // ... ...
+
+    public Logger getLogger(String name) {
+        // ... ...
+    }
+}
+```
+
+**Log4jLoggerFactory: StaticLoggerBinder.getSingleton().getLoggerFactory().getLogger()**
+```java
+public class StaticLoggerBinder implements LoggerFactoryBinder {
+    private final ILoggerFactory loggerFactory;
+
+    // ... ...
+
+    public static final StaticLoggerBinder getSingleton() {
+        return SINGLETON;
+    }
+    // ... ...
+    
+    private StaticLoggerBinder() {
+        loggerFactory = new Log4jLoggerFactory();
+        try {
+            @SuppressWarnings("unused")
+            Level level = Level.TRACE;
+        } catch (NoSuchFieldError nsfe) {
+            Util.report("This version of SLF4J requires log4j version 1.2.12 or later. See also http://www.slf4j.org/codes.html#log4j_version");
+        }
+    }
+
+    public ILoggerFactory getLoggerFactory() {
+        return loggerFactory;
+    }
+}
+
+public class Log4jLoggerFactory implements ILoggerFactory {
+    
+    // ... ...
+
+    public Logger getLogger(String name) {
+        // ... ...
+    }    
+}
+```
+
+> ##### <font color=green>Slf4j Report</font>
+
+这里额外关注几个方法, 关于 Slf4j 中寻找具体实现的时候, 会对结果做出 report:
+
+- findPossibleStaticLoggerBinderPathSet: 通过classloader 寻找到所有 StaticLoggerBinder.class 文件 (JVM 
+  是允许 classpath 存在多个同样全限定名的类, 此外 JVM 是检索顺序是从前往后, 最终, 会加载顺序在前的类信息.)
 ```java
 public final class LoggerFactory {
 
@@ -275,7 +387,7 @@ public final class LoggerFactory {
 }
 ```
 
-!> 当 pom 依赖中引入多个日志实现:
+- 当 pom 依赖中引入多个日志实现:
 ```xml
 <!-- ... -->
 <dependencies>
@@ -297,7 +409,7 @@ public final class LoggerFactory {
 <!-- ... -->
 ```
 
-!> 启动应用时 SLF4J 会打印错误日志 multiple SLF4J bindings 以及 Actual binding:
+- 启动应用时 SLF4J 会打印错误日志 multiple SLF4J bindings 以及 Actual binding:
 ```text
 SLF4J: Class path contains multiple SLF4J bindings.
 SLF4J: Found binding in [jar:file:/C:/Domain/Maven/repository/ch/qos/logback/logback-classic/1.2.3/logback-classic-1.2.3.jar!/org/slf4j/impl/StaticLoggerBinder.class]
@@ -307,8 +419,219 @@ SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
 SLF4J: Actual binding is of type [ch.qos.logback.classic.util.ContextSelectorStaticBinder]
 ```
 
+- 当 pom 依赖中只引入门面, 而没有具体实现的时候:
+```xml
+<!-- ... -->
+<dependencies>
+    <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+    </dependency>
+</dependencies>
+<!-- ... -->
+```
+
+- 启动应用时 SLF4J 会捕捉 NoClassDefFoundError, 会打印错误日志没有具体日志实现 :
+```text
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+```
+
+> ##### <font color=green>Slf4j Dummy Class</font>
+
+通过上述可以发现, Slf4j 是通过寻找 classpath 下的 StaticLoggerBinder 来完成具体实现日志框架的绑定, 
+但是, slf4j-api 这个门面本身的源码中也会有一个 StaticLoggerBinder 类, 也就是一个假的类来占位,
+为什么不会绑定这个 dummy 的类呢?
+
+![dummy](../../media/log/dummy.png)
+
+```java
+public class StaticLoggerBinder {
+    private static final StaticLoggerBinder SINGLETON = new StaticLoggerBinder();
+    
+    // ... ...
+
+    private StaticLoggerBinder() {
+        throw new UnsupportedOperationException("This code should have never made it into slf4j-api.jar");
+    }
+
+    public ILoggerFactory getLoggerFactory() {
+        throw new UnsupportedOperationException("This code should never make it into slf4j-api.jar");
+    }
+    
+    // ... ...
+}
+```
+
+打开源码查看 pom 配置, 可以发现在打包的时候, 删除了这个 dummy 的类:
+```xml
+<!-- ... -->
+<plugins>
+    <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <executions>
+            <execution>
+                <phase>process-classes</phase>
+                <goals>
+                    <goal>run</goal>
+                </goals>
+            </execution>
+        </executions>
+        <configuration>
+            <tasks>
+                <echo>Removing slf4j-api's dummy StaticLoggerBinder and StaticMarkerBinder</echo>
+                <delete dir="target/classes/org/slf4j/impl"/>
+            </tasks>
+        </configuration>
+    </plugin>
+</plugins>
+<!-- ... -->
+```
+
+> ##### <font color=green>Slf4j Service Provider Interface</font>
+
+上面我们了解到, Slf4j 是通过 ClassLoader 寻找绑定具体的 StaticLoggerBinder, 此外, 还需要在打包的时候, 
+通过 mvn 插件删除 dummy 数据; 而在新的 Slf4j 版本中, 是通过 java 提供的 SPI 机制来完成具体绑定, 这样就避免了,
+使用 dummy StaticLoggerBinder 以及打包等额外配置.
+
+- pom 中引入新版本的依赖: 
+```xml
+<!-- ... -->
+<dependencies>
+    <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>1.8.0-beta4</version>
+    </dependency>
+
+    <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-classic</artifactId>
+        <version>1.3.0-alpha5</version>
+    </dependency>
+
+    <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-log4j12</artifactId>
+        <version>1.8.0-beta4</version>
+    </dependency>
+
+    <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-jdk14</artifactId>
+        <version>1.8.0-beta4</version>
+    </dependency>
+</dependencies>
+<!-- ... -->
+```
+
+- bind 流程与之前流程相似, 只是寻找具体的实现框架时, 利用 SPI 机制查找;  可以看出利用 ServiceLoader 
+  获取所有实现 SLF4JServiceProvider 接口的日志框架, 取出第一个为实际的 PROVIDER.
+```java
+public final class LoggerFactory {
+    // ... ...
+
+    private final static void bind() {
+        try {
+            List<SLF4JServiceProvider> providersList = findServiceProviders();
+            reportMultipleBindingAmbiguity(providersList);
+            if (providersList != null && !providersList.isEmpty()) {
+                PROVIDER = providersList.get(0);
+                PROVIDER.initialize();
+                INITIALIZATION_STATE = SUCCESSFUL_INITIALIZATION;
+                reportActualBinding(providersList);
+                fixSubstituteLoggers();
+                replayEvents();
+                SUBST_PROVIDER.getSubstituteLoggerFactory().clear();
+            }
+            // ... ...
+        } catch (Exception e) {
+            failedBinding(e);
+            throw new IllegalStateException("Unexpected initialization failure", e);
+        }
+    }
+
+    private static List<SLF4JServiceProvider> findServiceProviders() {
+        ServiceLoader<SLF4JServiceProvider> serviceLoader = ServiceLoader.load(SLF4JServiceProvider.class);
+        List<SLF4JServiceProvider> providerList = new ArrayList<SLF4JServiceProvider>();
+        for (SLF4JServiceProvider provider : serviceLoader) {
+            providerList.add(provider);
+        }
+        return providerList;
+    }
+}
+```
+
+- LogbackServiceProvider
+
+![logback](../../media/log/logback.png ':size=71%')
+
+```java
+public class LogbackServiceProvider implements SLF4JServiceProvider {
+    public static String REQUESTED_API_VERSION = "1.8.99"; // !final
+
+    private LoggerContext defaultLoggerContext;
+    private IMarkerFactory markerFactory;
+    private MDCAdapter mdcAdapter;
+    
+    // ... ...
+
+    @Override
+    public void initialize() {
+        defaultLoggerContext = new LoggerContext();
+        defaultLoggerContext.setName(CoreConstants.DEFAULT_CONTEXT_NAME);
+        initializeLoggerContext();
+        markerFactory = new BasicMarkerFactory();
+        mdcAdapter = new LogbackMDCAdapter();
+        //initialized = true;
+    }
+}
+
+```
+
+- JULServiceProvider
+
+![jul](../../media/log/jul.png)
+
+```java
+public class JULServiceProvider implements SLF4JServiceProvider {
+    // ... ...
+
+    public void initialize() {
+        this.loggerFactory = new JDK14LoggerFactory();
+        this.markerFactory = new BasicMarkerFactory();
+        this.mdcAdapter = new BasicMDCAdapter();
+    }
+}
+```
+
+- Log4j12ServiceProvider
+
+![log4j](../../media/log/log4j.png)
+
+```java
+public class Log4j12ServiceProvider implements SLF4JServiceProvider {
+    // ... ...
+
+    @Override
+    public void initialize() {
+        loggerFactory = new Log4jLoggerFactory();
+        markerFactory = new BasicMarkerFactory();
+        mdcAdapter = new Log4jMDCAdapter();
+    }
+}
+```
+
+如上, 在 1.8.0-beta4 版本已经使用 SPI 完成门面和具体实现的绑定, 同时也更加符合面向接口编程的范式.
+
+> ##### <font color=green>Reference</font>
+
+<font color=green>参考原文链接: [origin-1][1] / [origin-2][2] / [origin-3][3]</font>
 
 
+[1]: http://www.slf4j.org/legacy.html "1"
+[2]: https://blog.csdn.net/bjchenxu/article/details/108031101 "2"
+[3]: https://albenw.github.io/posts/e31dfd0e/ "3"
 
-
-[1]: https://logging.apache.org/log4j/1.2/manual.html "Log4j"
