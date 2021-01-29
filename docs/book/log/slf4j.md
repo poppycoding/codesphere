@@ -628,7 +628,10 @@ public class Log4j12ServiceProvider implements SLF4JServiceProvider {
 
 > ##### <font color=green>Reference</font>
 
-<font color=green>参考原文链接: [origin-1][1] / [origin-2][2] / [origin-3][3]</font>
+**<font color=green face="Microsoft Sans Serif">原文链接: [origin-1][1] / [origin-2][2] / [origin-3][3]</font>**
+
+
+
 
 
 [1]: http://www.slf4j.org/legacy.html "1"

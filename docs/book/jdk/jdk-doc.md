@@ -258,7 +258,16 @@ javadoc -d doc src\*
 mvn javadoc:javadoc
 ```
 
+> ##### <font color=green>Reference</font>
 
+**<font color=green face="Microsoft Sans Serif">原文链接: [origin-1][1] / [origin-2][2]</font>**
+
+
+
+
+
+[1]: https://blog.joda.org/2012/11/javadoc-coding-standards.html "1"
+[2]: https://www.baeldung.com/javadoc "2"
 
 
 

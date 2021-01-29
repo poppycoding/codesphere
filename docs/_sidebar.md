@@ -1,22 +1,15 @@
-- Design Principles
+- Design Principle
   - [Overview](book/desgin-principle/overview.md)
   - [SRP](book/desgin-principle/SRP.md)
-
-- Design Patterns
-  - [Strategy](book/desgin-pattern/Strategy.md)
     
-- Spring for All
-  - [Spring Framework](book/spring-for-all/spring-framework/guide.md)
-  - [Spring Boot](book/spring-for-all/spring-boot/guide.md)
-  - [Spring Cloud](book/spring-for-all/spring-cloud/guide.md)
+- Geek Time Channel
+    - [Overview](book/geek-time/overview.md)
+    - [Spring Family](book/geek-time/spring-family/doc.md)
 
 - Log
   - [Overview](book/log/overview.md)
   - [Slf4j](book/log/slf4j.md)
   - [Logback](book/log/logback.md)
-
-- Junit
-  - [Junit5](book/junit/Junit5.md)
 
 - JDK
   - [JDK Version](book/jdk/jdk-version.md)
@@ -32,5 +25,6 @@
 - Wikipedia
   - [Release Train](book/wikipedia/release-train.md)    
 
-- Todo
-  - [Draft](book/todo/draft.md)
+[comment]: <> (- Todo)
+
+[comment]: <> (  - [Draft]&#40;book/todo/draft.md&#41;)

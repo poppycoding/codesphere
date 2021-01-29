@@ -83,37 +83,34 @@ Apache 对 log4j 进行了大量优化 因此使用 Apache 的 Commons Logging �
 WARN - 警告提示, ERROR - 打印错误和异常信息, 可以使用这个级别来减少日志输出量.
 
 - JUL: 定义了 7 个日志级别, 从严重到普通依次是:
-  - **SEVERE**
-  - **WARNING**
-  - **INFO**
-  - **CONFIG**
-  - **FINE**
-  - **FINER**
-  - **FINEST**
-
+  - **SEVERE, WARNING, INFO, CONFIG, FINE, FINER, FINEST**
+  
 - Log4j: 定义了 8 个日志级别, 从严重到普通依次是:
-  - **OFF**
-  - **FATAL**
-  - **ERROR**
-  - **WARN**
-  - **INFO**
-  - **DEBUG**
-  - **TRACE**
-  - **ALL** 
-
+  - **OFF, FATAL, ERROR, WARN, INFO, DEBUG, TRACE, ALL**
+  
 - Logback: 定义了 5 个日志级别, 从严重到普通依次是:
-  - **ERROR**
-  - **WARN**
-  - **INFO**
-  - **DEBUG**
-  - **TRACE**
-
+  - **ERROR, WARN, INFO, DEBUG, TRACE**
+    
 > ##### <font color=green>Spring Logging Framework</font>
 
 - Spring 框架默认使用 Apache JCL + Log4j 作为日志输出:
 
 ![spring](../../media/log/spring.png)
 
+> ##### <font color=green>Alibaba Logging Guidelines</font>
+
+【强制】 应用中不可直接使用日志系统 (Log4j, Logback) 中的 API, 而应依赖使用日志框架 SLF4J 中的 API, 
+使用门面模式的日志框架, 有利于维护和各个类的日志处理方式统一.
+```java
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public class Test {
+    private static final Logger logger = LoggerFactory.getLogger(Test.class);
+    
+    // ... ...
+}
+```
   
 - SpringBoot 默认使用 Slf4j + Logback 作为日志输出:
 
@@ -121,7 +118,10 @@ WARN - 警告提示, ERROR - 打印错误和异常信息, 可以使用这个级�
 
 > ##### <font color=green>Reference</font>
 
-<font color=green>参考原文链接: [origin-1][8] / [origin-2][9] / [origin-3][10]</font>
+**<font color=green face="Microsoft Sans Serif">原文链接: [origin-1][8] / [origin-2][9] / [origin-3][10]</font>**
+
+
+
 
 
 [1]: https://logging.apache.org/log4j/1.2/manual.html "Log4j"
