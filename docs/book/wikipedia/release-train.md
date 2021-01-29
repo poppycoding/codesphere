@@ -11,7 +11,7 @@
 </a>
 </p>
 
-!> **Agile Release Train**
+> ##### <font color=green>Agile Release Train</font>
 
 Release Train 字面意义就是"火车发布", 就像生活中的车站发车一样, 在软件行业, 项目通常也会定时定点发布. 尤其是对
 于复杂的项目, 系统规模越大, 加入的包越多, 就越有可能进入软件管理的领域里的"依赖地狱", 版本混乱导致新版本难以发
@@ -25,7 +25,7 @@ Release Train 字面意义就是"火车发布", 就像生活中的车站发车�
 - macOS Mojave, macOS Sierra
 - Spring Cloud Greenwich, Spring Cloud Hoxton
 
-!> **Project Module**
+> ##### <font color=green>Project Module</font>
 
 一个大的项目按照 Release Train 发布, 内部会涉及不同的模块, 而每一个模块的就是对应一个 Project Module, 
 以最新版本 Spring Data 2020.0.2 版本为例, 内含有多个 Project Module 模块: 
@@ -34,7 +34,7 @@ Release Train 字面意义就是"火车发布", 就像生活中的车站发车�
 - Spring Data MongoDB 3.1.2
 - Spring Data Redis 2.4.2
 
-!> **Semantic Versioning**
+> ##### <font color=green>Semantic Versioning</font>
 
 [Semantic Version][1] 定义了一套版本号规则的标准, 语义化版本号: X.Y.Z (主版本号.次版本号.修订号)
 
@@ -47,7 +47,7 @@ Release Train 字面意义就是"火车发布", 就像生活中的车站发车�
 进行不向下兼容的修改时, 递增主版本号. 版本号均从零开始, 但是当主版本号为零时 0.x.y (0.1.0), 
 代表了软件处于开发初始阶段, 而 1.0.0 的版本号则代表了一个稳定的公共 API.
 
-!> **Calendar Versioning**
+> ##### <font color=green>Calendar Versioning</font>
 
 [Calendar Versioning][2] 定义了一套版本号规则的标准, 日历化版本号: MAJOR.MINOR.MICRO-[MODIFIER] (主要.次要.微小-可选修饰符)
 
@@ -68,7 +68,7 @@ Release Train 字面意义就是"火车发布", 就像生活中的车站发车�
 - DD: 日 - 1, 2 ... 30, 31
 - 0D: 以零填充的日 - 01, 02 ... 30, 31
 
-!> **Spring Release Train**
+> ##### <font color=green>Spring Release Train</font>
 
 Spring Release Train 版本号都是按照字母表顺序来发布, 如 2020 之前的版本:
 
@@ -92,7 +92,7 @@ Spring Release Train 版本号都是按照字母表顺序来发布, 如 2020 之
 - Spring Data **<font color=red>Fowler</font>**  
 - **...**
 
-!> **Spring Release Train Change On 2020**
+> ##### <font color=green>Spring Release Train Change On 2020</font>
 
 从[2020][5]开始, Spring Team 采用日历化风格的版本来控制 Release Train, 规则: YYYY.MINOR.MICRO-[MODIFIER]
 - YYYY: 年份全称. 2020
@@ -111,15 +111,23 @@ table th:first-of-type {
 }
 table th:nth-of-type(2) {
     width: 7cm;
-    width: 7cm;
 }
 </style>
 | Before      | After     |
 | :----:      | :----:    |
 | 3.0.0.RC1   | 3.0.0-RC1 |
 
-[1]: https://semver.org/ "语义化版本"
-[2]: https://calver.org/ "日历化版本"
-[3]: https://spring.io/projects/spring-cloud#learn "spring-cloud"
-[4]: https://spring.io/projects/spring-data#learn "spring-data"
-[5]: https://github.com/spring-cloud/spring-cloud-release/wiki/Release-Train-Naming-Convention "naming-change"
+> ##### <font color=green>Reference</font>
+
+**<font color=green face="Microsoft Sans Serif">原文链接: [origin-1][6]</font>**
+
+
+
+
+
+[1]: https://semver.org/ "1"
+[2]: https://calver.org/ "2"
+[3]: https://spring.io/projects/spring-cloud#learn "3"
+[4]: https://spring.io/projects/spring-data#learn "4"
+[5]: https://github.com/spring-cloud/spring-cloud-release/wiki/Release-Train-Naming-Convention "5"
+[6]: https://developer.aliyun.com/article/778402 "6"

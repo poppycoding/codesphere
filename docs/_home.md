@@ -1,7 +1,9 @@
 <center>
 
-## _<font color=red>Hoist the Colours!</font>_
+## <font color=red size=7>"Talk is cheap, show me the code."</font> 
 
-### _<font color=green>Go and brave the weird and haunted shores at world's end.</font>_
+### <font color=green>-Linus Torvalds</font>
 
 </center>
+
+
