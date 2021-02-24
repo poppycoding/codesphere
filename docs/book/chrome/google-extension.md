@@ -14,3 +14,4 @@
 - Tampermonkey
 - Vimium
 - 简悦 - SimpRead
+- Extensions Manager (aka Switcher)
