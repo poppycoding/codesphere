@@ -2,10 +2,10 @@
   - [Overview](book/desgin-principle/overview.md)
   - [SRP](book/desgin-principle/SRP.md)
     
-- Geek Channel
-    - [Overview](book/geek-time/overview.md)
-    - [Learn Microservice](book/geek-time/learn-microservice/doc.md)
-    - [Spring Family](book/geek-time/spring-family/doc.md)
+- Geek Time
+  - [Overview](book/geek-time/overview.md)
+  - [Learn Microservice](book/geek-time/learn-microservice/doc.md)
+  - [Spring Family](book/geek-time/spring-family/doc.md)
 
 - Log
   - [Overview](book/log/overview.md)
