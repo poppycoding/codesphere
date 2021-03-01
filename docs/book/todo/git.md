@@ -8,3 +8,8 @@ git branch -m master
 git push -f origin master
 
 ```
+
+2. 
+```shell
+git config --global --unset http.proxy
+```
