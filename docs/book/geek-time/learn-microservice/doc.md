@@ -13,8 +13,7 @@
 **<font color=red>优点:</font>** 对于业务规模不大, 开发团队规模小的时候, 单体应用能一定程度上控制开发和运维成本
 - 早期的系统架构, 为人熟知, 学习成本低, 开发上手快
 - 易于测试, 因为单体应用包含了所有功能, 没有外部依赖, 一旦部署就可以测试所有功能
-- 容易部署, 以 MVC (Spring MVC, Hibernate, Tomcat) 为例, 通常是打成 war 包部署到 tomcat, 然后启动 tomcat,
-监听端口, 即可对外提供服务
+- 容易部署, 如 MVC (Spring MVC, Hibernate, Tomcat), 通常是打成 war 包部署到 tomcat, 启动监听端口, 即可对外提供服务
 
 ![1](../../../media/geek-time/learn-microservice/1.png)
 
@@ -73,7 +72,7 @@
 同时每一次调用的链路信息也需要被记录, 用于故障定位和问题追踪, 最后就是调用过程中的错误处理, 通过重试, 降级等治理手段,
 来保证整个程序的容错率.
 
-这也正是微服务架构中通常需要依赖的几个基本组件: 服务描述, 注册中心, 服务框架, 服务监控, 服务追踪, 服务治理.
+这也正是微服务架构中通常需要依赖的几个基本组件: 服务描述, 注册中心, 服务框架, 服务追踪, 服务监控, 服务治理.
 
 ![6](../../../media/geek-time/learn-microservice/6.jpg)
 
@@ -86,9 +85,9 @@
   - 服务端启动时, 把描述信息注册到注册中心, 对外发布成服务
   - 客户端启动时, 根据自己配置的服务需求信息, 向注册中心订阅对应的服务
   - 注册中心返回服务端的信息给客户端, 同时监控服务端的信息变化, 将变更通知给客户端
-    
-![7](../../../media/geek-time/learn-microservice/7.png ':size=45%')
-![8](../../../media/geek-time/learn-microservice/8.png ':size=42%')
+
+![7](../../../media/geek-time/learn-microservice/7.png ':size=40%')
+![8](../../../media/geek-time/learn-microservice/8.png ':size=30%')
      
 - **<font color=red>服务框架</font>**: 根据服务描述信息, 确定具体的通信协议, 数据压缩格式等, 可以选择对应的框架来完成服务调用, 如:
 <style>
@@ -111,17 +110,26 @@ table th:nth-of-type(4) {
 | Alibaba  | Dubbo         | TCP       | Hessian Binary  |
 | Google   | gRpc	       | HTTP2     | Protocol Buffers|
 | Facebook | Thrift	       | TCP       | ProtoBuf        |
-
-- **<font color=red>服务监控</font>**: 当服务之间可以通信之后, 需要对调用情况进行监控, 以便发现问题:
-  - 数据收集: 服务调用的耗时, 是否成功状态收集上传
-  - 数据处理: 根据收集到的信息, 计算成功率, QPS等指标
-  - 数据展示: 把处理后的指标信息, 美化发布到 Dashboard 便于监控报警  
   
 - **<font color=red>服务追踪</font>**: 当服务数量众多, 相互调用频繁, 就需要记录调用链来进行问题定位:
     - Span: 基本工作单元, 消费者调用提供者服务时, 可以传入一个一定规则的 SpanId
     - Trace: 多个服务之间调用时会生成多个 SpanId, 构成一个完整的 trace, 而通过同一个 traceId 实现请求追钟 
+
+![13](../../../media/geek-time/learn-microservice/13.jpg ':size=45%')
+![12](../../../media/geek-time/learn-microservice/12.png ':size=40%')
+
+- **<font color=red>服务监控</font>**: 当服务之间可以通信之后, 需要对调用情况进行监控, 以便发现问题:
+    - 数据收集: 服务调用的耗时, 是否成功状态收集上传
+    - 数据处理: 根据收集到的信息, 计算成功率, QPS等指标
+    - 数据展示: 把处理后的指标信息, 美化发布到 Dashboard 便于监控报警
+
+![10](../../../media/geek-time/learn-microservice/10.png ':size=35%')
+![11](../../../media/geek-time/learn-microservice/11.png ':size=40%')    
   
 - **<font color=red>服务治理</font>**: 通过监控发现问题, 然后追踪定位问题, 但是仅仅靠人工解决问题仍然不足, 而服务治理就是一定程度上自动处理故障:
   - 单机故障: 传统模式下靠运维人员重启或者下线节点, 而服务治理可以实现自动摘除故障节点
   - 依赖故障: 当服务故障, 可以通过熔断, 降级等治理手段保证消费者不会连带故障, 同时减轻当前服务的压力, 促使其自动恢复
   - 容量规划: 可以配置一定规则, 来实现服务的自动扩缩容
+
+![14](../../../media/geek-time/learn-microservice/14.png ':size=30%')
+![15](../../../media/geek-time/learn-microservice/15.png ':size=30%')
