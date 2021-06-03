@@ -15,7 +15,7 @@
 - 易于测试, 因为单体应用包含了所有功能, 没有外部依赖, 一旦部署就可以测试所有功能
 - 容易部署, 如 MVC (Spring MVC, Hibernate, Tomcat), 通常是打成 war 包部署到 tomcat, 启动监听端口, 即可对外提供服务
 
-![1](../../../media/geek-time/learn-microservice/1.png)
+![1](../../../media/geek-park/learn-microservice/1.png)
 
 **<font color=red>缺点:</font>** 当业务规模不断扩大, 开发人员跨团队协作等情况下, 单体应用就会表现出以下问题
 - 部署效率低下, 当业务代码越来越多, 依赖的各种资源就越来越多, 编译打包部署一次, 将耗费大量时间
@@ -24,7 +24,7 @@
 - 不够灵活, 影响持续交付, 因为多个开发人员共同开发一个应用程序, 这就要求必须等到所有人都完成各自开发之后, 才能交付
 - 技术栈限制, 单体应用要求使用同一开发语言, 同时单体应用各种功能代码耦合性搞, 难于重构
 
-![2](../../../media/geek-time/learn-microservice/2.png ':size=60%')
+![2](../../../media/geek-park/learn-microservice/2.png ':size=60%')
 
 > ##### <font color=green>服务化</font>
 
@@ -36,7 +36,7 @@
 划分成不同的模块, 每个模块有各自的团队独立开发, 测试, 部署, 同时向外暴露出接口, 各个模块间通过 RPC 相互调用.
 这样减少了系统间的代码耦合, 一个模块出问题, 不会导致整个系统的不可用, 同时只需要修复对应的模块, 快速启动.
 
-![4](../../../media/geek-time/learn-microservice/4.png)
+![4](../../../media/geek-park/learn-microservice/4.png)
 
 > ##### <font color=green>Microservice 微服务</font>
 
@@ -51,7 +51,7 @@
 **<font color=red>缺点:</font>** 微服务会把单体应用的技术债务从开发转到运维
 - 服务被拆分的粒度越细, 服务治理就越困难, 对应的运维成本就会越高
 
-![5](../../../media/geek-time/learn-microservice/5.png)
+![5](../../../media/geek-park/learn-microservice/5.png)
 
 ## <font color=red>Monolith-to-MicroService</font>
 
@@ -62,7 +62,7 @@
 这里没有严格的标准, 只能视具体情况而言, 整体上还是以业务维度为主. 如:
 - 业务维度(纵向): 根据业务之间的耦合, 数据关系密切度拆分不同的服务
 - 功能维度(横向): 公共功能聚合为一个公共服务
-- 人员维度: 在实际中的考量，把某几个员工熟悉的业务划分成一个, 便于开发部署
+- 人员维度: 在实际中的考量,把某几个员工熟悉的业务划分成一个, 便于开发部署
 - 性能维度: 性能要求不同的业务拆分出来, 便于独立部署扩展及维护
 
 > ##### <font color=green>微服务架构</font>
@@ -74,7 +74,7 @@
 
 这也正是微服务架构中通常需要依赖的几个基本组件: 服务描述, 注册中心, 服务框架, 服务追踪, 服务监控, 服务治理.
 
-![6](../../../media/geek-time/learn-microservice/6.jpg)
+![6](../../../media/geek-park/learn-microservice/6.jpg)
 
 - **<font color=red>服务描述</font>**: 服务描述用来对外描述自己的信息, 如服务名, 提供的信息内容, 返回的格式等; 有如下三种:
   - RestFul API: Http 协议的服务描述, 通过 Swagger, YApi 等工具来管理
@@ -86,8 +86,8 @@
   - 客户端启动时, 根据自己配置的服务需求信息, 向注册中心订阅对应的服务
   - 注册中心返回服务端的信息给客户端, 同时监控服务端的信息变化, 将变更通知给客户端
 
-![7](../../../media/geek-time/learn-microservice/7.png ':size=40%')
-![8](../../../media/geek-time/learn-microservice/8.png ':size=30%')
+![7](../../../media/geek-park/learn-microservice/7.png ':size=40%')
+![8](../../../media/geek-park/learn-microservice/8.png ':size=30%')
      
 - **<font color=red>服务框架</font>**: 根据服务描述信息, 确定具体的通信协议, 数据压缩格式等, 可以选择对应的框架来完成服务调用, 如:
 <style>
@@ -115,21 +115,21 @@ table th:nth-of-type(4) {
     - Span: 基本工作单元, 消费者调用提供者服务时, 可以传入一个一定规则的 SpanId
     - Trace: 多个服务之间调用时会生成多个 SpanId, 构成一个完整的 trace, 而通过同一个 traceId 实现请求追钟 
 
-![13](../../../media/geek-time/learn-microservice/13.jpg ':size=45%')
-![12](../../../media/geek-time/learn-microservice/12.png ':size=40%')
+![13](../../../media/geek-park/learn-microservice/13.jpg ':size=45%')
+![12](../../../media/geek-park/learn-microservice/12.png ':size=40%')
 
 - **<font color=red>服务监控</font>**: 当服务之间可以通信之后, 需要对调用情况进行监控, 以便发现问题:
     - 数据收集: 服务调用的耗时, 是否成功状态收集上传
     - 数据处理: 根据收集到的信息, 计算成功率, QPS等指标
     - 数据展示: 把处理后的指标信息, 美化发布到 Dashboard 便于监控报警
 
-![10](../../../media/geek-time/learn-microservice/10.png ':size=35%')
-![11](../../../media/geek-time/learn-microservice/11.png ':size=40%')    
+![10](../../../media/geek-park/learn-microservice/10.png ':size=35%')
+![11](../../../media/geek-park/learn-microservice/11.png ':size=40%')    
   
 - **<font color=red>服务治理</font>**: 通过监控发现问题, 然后追踪定位问题, 但是仅仅靠人工解决问题仍然不足, 而服务治理就是一定程度上自动处理故障:
   - 单机故障: 传统模式下靠运维人员重启或者下线节点, 而服务治理可以实现自动摘除故障节点
   - 依赖故障: 当服务故障, 可以通过熔断, 降级等治理手段保证消费者不会连带故障, 同时减轻当前服务的压力, 促使其自动恢复
   - 容量规划: 可以配置一定规则, 来实现服务的自动扩缩容
 
-![14](../../../media/geek-time/learn-microservice/14.png ':size=30%')
-![15](../../../media/geek-time/learn-microservice/15.png ':size=30%')
+![14](../../../media/geek-park/learn-microservice/14.png ':size=30%')
+![15](../../../media/geek-park/learn-microservice/15.png ':size=30%')

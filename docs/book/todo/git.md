@@ -13,3 +13,17 @@ git push -f origin master
 ```shell
 git config --global --unset http.proxy
 ```
+
+3. git pull 的时候 error: cannot lock ref xxx unable to update local ref
+   或许是因为分支存在大小写同名，pull 之前 gc 一下即可 （设置 ignorecase 似乎不起作用）
+```shell
+git gc
+# or
+git gc --prune=now
+```
+
+4. 设置大小写属性
+```shell
+git config --get core.ignorecase
+git config core.ignorecase false
+```
