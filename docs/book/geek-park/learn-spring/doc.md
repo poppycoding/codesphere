@@ -3,14 +3,14 @@
 Java 语言中, Spring 是项目开发的必备框架. 作为世界上最流行的开发框架之一, 我们除了满足日常开发需求之外, 
 其框架设计中的 **<font color=red>设计思想, 设计原则, 设计模式</font>** 等也值得深入学习.
 
-![0](../../../media/geek-park/spring-family/img.png ':size=60%')
+![0](../../../media/geek-park/learn-spring/img.png ':size=60%')
 
 > ##### <font color=green>Spring 全家桶: Spring Framework, Spring Boot, Spring Cloud</font>
 
 Spring 框架指的是 Spring Framework, 是整个 **<font color=red>Spring 生态的基石</font>**. Spring Boot, Spring Cloud 都是基于 Spring
 Framework 封装整合常用的企业级功能而来.
 
-![2](../../../media/geek-park/spring-family/img_2.png ':size=35%')
+![2](../../../media/geek-park/learn-spring/img_2.png ':size=35%')
 
 > ##### <font color=green>Spring Framework 构建企业级应用的轻量级一站式解决方案</font>
 
@@ -24,7 +24,7 @@ Java EE7, 以及 WebSocket 的支持; 而 Spring 5.0 版本中引入了 WebFlux,
 Spring Framework 是 Spring 全家桶中的底层架构, 提供了核心基础功能 **<font color=red>IOC 和 AOP</font>**, 
 还有其他如事务管理 Transactions, Spring MVC Web 框架等常用功能.
 
-![1](../../../media/geek-park/spring-family/img_1.png ':size=60%')
+![1](../../../media/geek-park/learn-spring/img_1.png ':size=60%')
 
 Spring 作为 Java 开发框架, 拥有框架最显著的特性 **<font color=red>简化开发, 通过解耦业务和非业务功能, 
 使开发人员更加关注业务开发; 框架本身尽可能的整合非业务的通用功能, 实现代码复用, 并且隐藏复杂的实现细节 (数据源, 事务管理), 从而降低开发难度, 
@@ -34,21 +34,21 @@ Spring 框架的另一个作用就是 **<font color=red>标准化项目开发, �
 使用 Spring MVC 框架通常按照 Controller, Service, Repository 三层结构开发, 只需要完成业务功能逻辑, 即可打包部署; 
 而对于其他非业务功能, 如对象生命周期的管理, http 请求的解析映射转发, 响应的处理, 都由 MVC 来完成.
 
-![10](../../../media/geek-park/spring-family/img_10.png ':size=50%')
+![10](../../../media/geek-park/learn-spring/img_10.png ':size=50%')
 
 > ##### <font color=green>Spring Boot 快速构建 Spring 应用程序</font>
 
 Spring Boot 是基于 Spring Framework 开发, "Boot" 代表了其设计初衷, 快速地启动一个项目, 快速地开发一个项目, 
 快速地部署一个项目. 核心特性如: auto-configuration, spring-boot-xx-starter, embedded web container等.
 
-![8](../../../media/geek-park/spring-family/img_8.png ':size=60%')
+![8](../../../media/geek-park/learn-spring/img_8.png ':size=60%')
 
 > ##### <font color=green>Spring Cloud 服务于分布式系统, 简化微服务开发</font>
 
 而对于构建微服务集群服务而言, 那 Spring Cloud 就是一套全面的解决方案. Spring Cloud 主要负责微服务集群的服务治理工作, 
 包含很多独立的功能组件, 比如 Spring Cloud Sleuth 调用链追踪, Spring Cloud Config 配置中心等.
 
-![9](../../../media/geek-park/spring-family/img_9.png ':size=50%')
+![9](../../../media/geek-park/learn-spring/img_9.png ':size=50%')
 
 ## <font color=red>Spring Framework</font>
 
@@ -76,7 +76,7 @@ Rod Johnson 就是基于此现状, 开发了 Spring 初始框架 Interface21, �
 Spring Framework 每个模块负责一个独立的功能. 模块之间除了上下层的依赖关系, 几乎没有依赖和耦合. 因此, 
 开发者可以按需引用功能模块, 而不会因为一个小功能, 就要把整个 Spring 框架引入到项目中.
 
-![7](../../../media/geek-park/spring-family/img_7.png ':size=50%')
+![7](../../../media/geek-park/learn-spring/img_7.png ':size=50%')
 
 - ###### <font color=red>封装, 抽象</font>
 

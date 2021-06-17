@@ -2,7 +2,7 @@
 
 > ##### <font color=green>适配器模式:抽象出统一的接口, 用于匹配不同类的接口</font>
 
-Spring MVC 模块中一个典型的适配器应用: HandlerAdapter
+<font color=red>Spring MVC 模块中一个典型的适配器应用: HandlerAdapter</font>
 
 ```java
 public interface HandlerAdapter {
@@ -175,7 +175,7 @@ public class DispatcherServlet {
 
 > ##### <font color=green>策略模式: 可以实现运行时切换不同算法, 适用于执行某些行为时存在许多相似类</font>
 
-Spring 中一个典型的策略模式应用: AOP
+<font color=red>Spring 中一个典型的策略模式应用: AOP</font>
 
 Spring AOP 有基于实现接口类的 JDK 动态代理, 以及通过修改对象类字节码的 CGLIB 代理. 针对两种被代理类的类型, Spring
 定义一个策略接口, 让两种动态代理策略实现这个接口, 然后运行时动态地选择具体的实现方式.
@@ -247,7 +247,7 @@ public class DefaultAopProxyFactory implements AopProxyFactory, Serializable {
 
 > ##### <font color=green>组合模式: 主要应用于树状的模型结构, 简化叶子和容器节点的处理</font>
 
-Spring 中一个典型的组合模式应用: CompositeCacheManager
+<font color=red>Spring 中一个典型的组合模式应用: CompositeCacheManager</font>
 
 Cache 模块也是 Spring 再封装抽象设计思想的体现, Spring 提供了统一的抽象接口 Cache; 对于不同的缓存实现, 如: 
 ConcurrentMapCache, EhCacheCache, RedisCache, GuavaCache, CaffeineCache 等常用的缓存, 统一使用露相同的 api, 
@@ -358,7 +358,7 @@ public class CompositeCacheManager implements CacheManager, InitializingBean {
 
 > ##### <font color=green>装饰器模式: 将对象放入包含行为的特殊封装对象中, 从而为对象新增额外的行为</font>
 
-Spring 中一个典型的装饰器模式应用: TransactionAwareCacheDecorator
+<font color=red>Spring 中一个典型的装饰器模式应用: TransactionAwareCacheDecorator</font>
 
 通常情况下, 缓存层和数据库层也需要保持事务的的一致性, 防止缓存写入后, 数据库事务回滚, 导致缓存出现脏数据. Spring 
 是通过 TransactionAwareCacheDecorator 将缓存和数据库的写操作放到同一个事务中, 保证了两者的一致性. 
@@ -435,7 +435,7 @@ public class TransactionAwareCacheDecorator implements Cache {
 
 > ##### <font color=green>工厂模式: 用于封装和管理对象的创建, 隐藏内部细节, 使得创建对象和使用对象分离</font>
 
-Spring 中一个典型的工厂模式应用: BeanFactory
+<font color=red>Spring 中一个典型的工厂模式应用: BeanFactory</font>
 
 BeanFactory 或 ApplicationContext (AnnotationConfigApplicationContext, ClassPathXmlApplicationContext ...)
 就是 IOC 核心, 或者简单认为就是 IOC 容器, 而整个 IOC 本身就是一个工厂实现, 可以通过不同的方法获取 bean, 而不要手动 new, 
@@ -529,7 +529,7 @@ public class BeanInstantiationDemo {
 
 > ##### <font color=green>观察者模式: 在观察目标和观察者之间建立一个抽象的耦合, 同时支持异步非阻塞编程</font>
 
-Spring 中一个典型的观察者模式应用: ApplicationEvent
+<font color=red>Spring 中一个典型的观察者模式应用: ApplicationEvent</font>
 
 观察者模式是一种常见的编程模式, 它通过订阅机制, 实现发布者 publisher 和订阅者 subscribers 的状态互动, 适用于一对一或者一对多的对象交互场景; 
 Java 中的 Observable, Observer, 以及 Guava 提供的 EventBus 等都是对观察者模式的支持. 
@@ -711,7 +711,7 @@ public class EmailPublisher {
 
 > ##### <font color=green>模板方法模式: 定义了一个算法的步骤, 并允许子类为一个或多个步骤提供实现</font>
 
-Spring 中一个典型的模板方法模式应用: AbstractApplicationContext
+<font color=red>Spring 中一个典型的模板方法模式应用: AbstractApplicationContext</font>
 
 一个好的程序设计, 会区分变与不变, 然后把不变的部分抽象出公共实现, 把变化的部分隔离开, 用接口封装隔离, 或者抽象类约束子类;
 而模板方法的一个标准做法, 就是利用一个抽象类, 将部分逻辑以具体的方法实现, 然后声明一些抽象方法来迫使子类进行不同地实现, 

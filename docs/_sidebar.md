@@ -8,29 +8,25 @@
 - GEEK PARK
   - [Overview](book/geek-park/overview.md)
   - [Learn Microservice](book/geek-park/learn-microservice/doc.md)
-  - [Spring Family](book/geek-park/spring-family/doc.md)
-
-- API LAB
-  - [Overview](book/api-lab/overview.md)
-  - [JDK Lab](book/api-lab/jdk-lab/doc.md)
-  - [Guava Lab](book/api-lab/guava-lab/doc.md)
-    
-- LOG
-  - [Overview](book/log/overview.md)
-  - [Slf4j](book/log/slf4j.md)
-  - [Logback](book/log/logback.md)
-
-- CHROME
-  - [Google Extension](book/chrome/google-extension.md)
-
-- INTELLIJ
-  - [IDEA Plugin](book/idea/idea-plugin.md)
-  - [IDEA Error](book/idea/idea-error.md)
+  - [Learn Spring](book/geek-park/learn-spring/doc.md)
+  - [Learn DDD](book/geek-park/domain-driven-design/doc.md)
+  - [Training](book/ignore/doc.md)
 
 - WIKIPEDIA
-    - [JDK Version](book/jdk/jdk-version.md)
-    - [Java Doc](book/jdk/jdk-doc.md)
-    - [Release Train](book/wikipedia/release-train.md)    
+    - [Overview](book/wikipedia/overview.md)
+    - [Develop](book/wikipedia/dev/doc.md)
+    - [Note](book/wikipedia/note/doc.md)
+
+- API LAB
+    - [Overview](book/api-lab/overview.md)
+    - [Java](book/api-lab/jdk/doc.md)
+    - [Guava](book/api-lab/guava/doc.md)
+
+- DEV TOOL
+  - [Overview](book/dev-tool/overview.md)
+  - [Chrome](book/dev-tool/chrome/doc.md)
+  - [IDEA](book/dev-tool/idea/doc.md)
+
 
 [comment]: <> (- Todo)
 
