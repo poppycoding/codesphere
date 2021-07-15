@@ -11,6 +11,8 @@
 - Don't Close Window With Last Tab
 - Extensions Manager (aka Switcher)
 - Infinity 新标签页 (Pro)
+- Markdown Viewer
+- Octotree - GitHub code tree  
 - OneTab
 - Proxy SwitchyOmega
 - Tab Groups Extension

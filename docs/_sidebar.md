@@ -5,29 +5,20 @@
     - [Spring Pattern](book/software-design/design-pattern/spring/doc.md)
     - [Guava Pattern](book/software-design/design-pattern/guava/doc.md)
     
-- GEEK PARK
-  - [Overview](book/geek-park/overview.md)
-  - [Learn Microservice](book/geek-park/learn-microservice/doc.md)
-  - [Learn Spring](book/geek-park/learn-spring/doc.md)
-  - [Learn DDD](book/geek-park/domain-driven-design/doc.md)
-  - [Training](book/ignore/doc.md)
+- OAK PARK
+  - [Overview](book/oak-park/overview.md)
+  - [Learn Microservice](book/oak-park/learn-microsvc/doc.md)
+  - [Learn Spring](book/oak-park/learn-spring/doc.md)
+  - [Learn DDD](book/oak-park/learn-ddd/doc.md)
+  - [Learn Jdk](book/oak-park/learn-jdk/doc.md)
+  - [Learn Guava](book/oak-park/learn-guava/doc.md)  
 
 - WIKIPEDIA
     - [Overview](book/wikipedia/overview.md)
     - [Develop](book/wikipedia/dev/doc.md)
     - [Note](book/wikipedia/note/doc.md)
 
-- API LAB
-    - [Overview](book/api-lab/overview.md)
-    - [Java](book/api-lab/jdk/doc.md)
-    - [Guava](book/api-lab/guava/doc.md)
-
 - DEV TOOL
   - [Overview](book/dev-tool/overview.md)
   - [Chrome](book/dev-tool/chrome/doc.md)
   - [IDEA](book/dev-tool/idea/doc.md)
-
-
-[comment]: <> (- Todo)
-
-[comment]: <> (  - [Draft]&#40;book/todo/draft.md&#41;)
