@@ -23,3 +23,4 @@
   - [Overview](book/dev-tool/overview.md)
   - [Chrome](book/dev-tool/chrome/doc.md)
   - [IDEA](book/dev-tool/idea/doc.md)
+  - [MAC](book/dev-tool/mac/doc.md)
