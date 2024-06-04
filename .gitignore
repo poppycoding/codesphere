@@ -62,5 +62,6 @@ hs_err_pid*
 # allure
 allure-results/
 .allure/
+.fleet/
 
 ignore/
