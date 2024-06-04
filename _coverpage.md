@@ -1,4 +1,4 @@
-![logo](media/logo.svg)
+![logo](./static/logo.svg)
 
 # yoho :pirate_flag:
 

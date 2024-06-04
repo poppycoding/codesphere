@@ -1,26 +1,18 @@
-- SOFTWARE DESIGN
-  - [Overview](book/software-design/overview.md)
-  - [Design Principle](book/software-design/design-principle/doc.md)
-  - [Design Pattern](book/software-design/design-pattern/overview.md)
-    - [Spring Pattern](book/software-design/design-pattern/spring/doc.md)
-    - [Guava Pattern](book/software-design/design-pattern/guava/doc.md)
-    
-- OAK PARK
-  - [Overview](book/oak-park/overview.md)
-  - [Learn Microservice](book/oak-park/learn-microsvc/doc.md)
-  - [Learn Spring](book/oak-park/learn-spring/doc.md)
-  - [Learn DDD](book/oak-park/learn-ddd/doc.md)
-  - [Learn Jdk](book/oak-park/learn-jdk/doc.md)
-  - [Learn Guava](book/oak-park/learn-guava/doc.md)  
-  - [Learn SQL](book/oak-park/learn-sql/doc.md)
+- AI 相关
+    - [概览](docs/ai/doc.md)
 
-- WIKIPEDIA
-    - [Overview](book/wikipedia/overview.md)
-    - [Develop](book/wikipedia/dev/doc.md)
-    - [Note](book/wikipedia/note/doc.md)
 
-- DEV TOOL
-  - [Overview](book/dev-tool/overview.md)
-  - [Chrome](book/dev-tool/chrome/doc.md)
-  - [IDEA](book/dev-tool/idea/doc.md)
-  - [MAC](book/dev-tool/mac/doc.md)
+- 数据库文档
+  - [MySQL 系列](docs/sql/doc.md)
+
+
+- Java 相关
+  - [微服务 系列](docs/microservice/doc.md)
+  - [Spring 系列](docs/spring/doc.md)
+  - [DDD 系列](docs/ddd/doc.md)
+
+
+- 工具类相关
+  - [Chrome](docs/tool/chrome/doc.md)
+  - [IDEA](docs/tool/idea/doc.md)
+  - [MAC](docs/tool/mac/doc.md)
