@@ -9,5 +9,5 @@
 * Platforms: Java / React / AI / DB / Develop Tool
 
 
-[GitHub](https://github.com/poppycoding/code-sphere)
+[GitHub](https://github.com/poppycoding/codesphere)
 [Get Started](_home.md)

@@ -2,21 +2,53 @@
 
 ![logo](../../../static/tool/chrome/logo.svg ':size=7%')
 
-## <font color=red>Extension</font>
 </div>
 
+### Chrome 缓存策略
 
-!> **Tool**
-- Adblock Plus
-- Don't Close Window With Last Tab
-- Extensions Manager (aka Switcher)
-- Infinity 新标签页 (Pro)
-- Markdown Viewer
-- Octotree - GitHub code tree  
-- OneTab
-- Proxy SwitchyOmega
-- Tab Groups Extension
-- Tampermonkey
-- Vimium
-- YApi-X
-- 简悦 - SimpRead
+在浏览网页时，你可能注意到有些网站加载得非常快，这得益于浏览器的缓存机制。缓存是一种存储机制，可以在本地保存部分网页资源，以便下次访问时更快地加载。Google Chrome 浏览器使用了两种主要的缓存类型：`memory cache` 和 `disk cache`。了解它们的工作原理和策略，可以帮助我们优化网页性能。
+
+#### 什么是缓存？
+
+缓存（Cache）是一种用于临时存储数据的技术，目的是减少数据读取的时间和频率。浏览器缓存网页资源，如图片、CSS 文件和 JavaScript 文件，从而加速网页加载速度，并减少带宽消耗。
+
+#### Memory Cache 和 Disk Cache
+
+1. **Memory Cache**：
+    - **存储位置**：内存（RAM）中
+    - **特点**：速度快，但容量有限，浏览器关闭后数据会丢失
+    - **用途**：适用于频繁访问的小型资源，如图标、样式表和小型脚本文件
+    - **优势**：访问速度非常快，因为数据存储在内存中
+
+2. **Disk Cache**：
+    - **存储位置**：硬盘或固态硬盘（SSD）中
+    - **特点**：容量大，存储持久，浏览器关闭后数据仍然保留
+    - **用途**：适用于大型文件和需要长期保存的资源，如视频、音频文件和大型图像文件
+    - **优势**：能存储大量数据，适合较大和不常访问的资源
+
+#### Chrome 的缓存策略
+
+Chrome 浏览器使用了复杂的策略来决定何时使用 `memory cache` 和 `disk cache`。这些策略考虑了资源的类型、大小、访问频率以及缓存控制指令。以下是 Chrome 的一般缓存策略：
+
+1. **资源大小**：
+    - 小于 1MB 的资源通常会被存储在 `memory cache` 中，以便快速访问。
+    - 大于 1MB 的资源更有可能被存储在 `disk cache` 中，以节省内存空间。
+
+2. **访问频率**：
+    - 频繁访问的资源（例如网页的标志、样式表）会优先存储在 `memory cache` 中，因为内存访问速度更快。
+    - 不常访问的资源（例如大型图像或视频文件）会存储在 `disk cache` 中，以保持内存的高效使用。
+
+3. **Cache-Control 头部指令**：
+    - **no-store**：浏览器不会缓存资源。
+    - **no-cache**：每次请求资源时，浏览器都会向服务器验证缓存的有效性。
+    - **max-age**：指定资源可以在缓存中存储的最大时间。浏览器会根据资源的过期时间来决定是否缓存以及缓存的类型。
+    - **public**：资源可以被任何缓存存储，包括 `memory cache` 和 `disk cache`。
+    - **private**：资源只能被用户的浏览器缓存，不可被共享缓存存储。浏览器会选择合适的缓存方式（可能包括 `memory cache` 和 `disk cache`）。
+
+#### 实际应用
+
+举个例子，如果一个网页的 CSS 文件设置了 `Cache-Control: max-age=3600`，表示这个文件可以缓存一小时。Chrome 可能会将这个文件存储在 `disk cache` 中，这样即使你关闭浏览器，文件也能在一小时内被缓存。当你再次访问该网页时，浏览器会直接从缓存中读取文件，而不是重新下载，从而提高加载速度。
+
+#### 总结
+
+Chrome 的缓存策略旨在平衡资源访问速度和系统资源的使用效率。`Memory cache` 用于短期和频繁访问的小型资源，提供快速的访问速度；`Disk cache` 用于大型和长期存储的资源，确保在浏览器会话之间保持资源的可用性。通过理解这些缓存机制，你可以更好地优化网页性能，提升用户体验。
