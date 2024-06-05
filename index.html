@@ -1,39 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Pirates Of The Caribbean</title>
-    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/>
-    <meta content="Description" name="description">
-    <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0" name="viewport">
-    <link href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css" rel="stylesheet">
-</head>
-<body>
-<div id="app">loading ...</div>
-<script>
-    window.$docsify = {
-      name: 'doc',
-      nameLink: '/blog',
-      logo: 'media/pirate.png',
-      subMaxLevel: 2,
-      auto2top: true,
-	  loadSidebar: true,
-	  coverpage: true,
-	  repo: 'oakparkoak/blog',
-	  homepage: '_home.md',
-	  count:{
-        countable:true,
-        fontsize:'0.9em',
-        color:'rgb(90,90,90)',
-        language:'english'
-      }
-    }
-</script>
-<script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
-<script src="//unpkg.com/docsify-count/dist/countable.js"></script>
-<script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/emoji.min.js"></script>
-<script src="//cdn.jsdelivr.net/npm/prismjs@1.22.0/components/prism-java.js"></script>
-<script src="//cdn.jsdelivr.net/npm/prismjs@1.22.0/components/prism-bash.js"></script>
-<!--<script src="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/docsify-sidebar-collapse.min.js"></script>-->
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <title>Code Sphere Hub</title>
+        <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/>
+        <meta content="Description" name="description">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0" name="viewport">
+        <link href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css" rel="stylesheet">
+        <link rel="stylesheet" href="./static/index/vue.css">
+        <link rel="icon" href="./static/index/programing.png">
+    </head>
+    <body>
+        <div id="app">loading ...</div>
+        <script>
+            window.$docsify = {
+                name: 'codesphere',
+                coverpage: true,
+                autoHeader: true,
+                loadSidebar: true,
+                loadNavbar: true,
+                subMaxLevel: 3,
+                auto2top: true,
+                repo: 'poppycoding/code-sphere',
+                homepage: '_home.md',
+                count: {
+                    countable: true,
+                    fontsize: '0.9em',
+                    color: 'rgb(90,90,90)',
+                    language: 'english'
+                },
+                search: {
+                    placeholder: {
+                        '/': '搜索'
+                    },
+                    noData: {
+                        '/': '找不到结果'
+                    }
+                },
+                plugins: [
+                    function (hook) {
+                        var footer = [
+                            '<hr/>',
+                            '<footer>',
+                            '<span><a href="https://github.com/poppycoding/code-sphere">codesphere</a> &copy;2018 - 2030. </span>',
+                            '<span>Powered By <a href="https://github.com/docsifyjs/docsify" target="_blank">docsify</a>.</span>',
+                            '</footer>'
+                        ].join('');
+        
+                        hook.afterEach(function (html) {
+                            return html + footer
+                        })
+                    }
+                ]
+            }
+        </script>
+        <script src="./static/index/docsify.min.js"></script>
+        <script src="./static/index/search.js"></script>
+        <script src="./static/index/zoom-image.js"></script>
+        <script src="./static/index/prism-python.min.js"></script>
+        <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+        <script src="//unpkg.com/docsify-count/dist/countable.js"></script>
+        <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/emoji.min.js"></script>
+        <script src="//cdn.jsdelivr.net/npm/prismjs@1.22.0/components/prism-java.js"></script>
+        <script src="//cdn.jsdelivr.net/npm/prismjs@1.22.0/components/prism-bash.js"></script>
+        <!--<script src="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/docsify-sidebar-collapse.min.js"></script>-->
+    </body>
 </html>
