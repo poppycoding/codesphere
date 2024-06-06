@@ -3,7 +3,7 @@
 
 
 - 数据库文档
-  - [MySQL 系列](docs/sql/doc.md)
+  - [MySQL 系列](docs/db/doc.md)
 
 
 - Java 相关
