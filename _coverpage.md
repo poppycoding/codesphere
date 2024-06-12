@@ -2,7 +2,7 @@
  <img src="./static/index/programing.png" alt="codesphere logo" width=200 height=200 />
 </p>
 
-# code sphere hub
+# codesphere hub
 
 > Embrace the Essence of Technology, Peer Into the Heart of Programming.
 
