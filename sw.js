@@ -37,21 +37,21 @@ const getFixedUrl = (req) => {
 }
 
 /**
- *  @Lifecycle Activate
- *  New one activated when old isnt being used.
- *
- *  waitUntil(): activating ====> activated
- */
+*  @Lifecycle Activate
+*  New one activated when old isnt being used.
+*
+*  waitUntil(): activating ====> activated
+*/
 self.addEventListener('activate', event => {
   event.waitUntil(self.clients.claim())
 })
 
 /**
- *  @Functional Fetch
- *  All network requests are being intercepted here.
- *
- *  void respondWith(Promise<Response> r)
- */
+*  @Functional Fetch
+*  All network requests are being intercepted here.
+*
+*  void respondWith(Promise<Response> r)
+*/
 self.addEventListener('fetch', event => {
   // Skip some of cross-origin requests, like those for Google Analytics.
   if (HOSTNAME_WHITELIST.indexOf(new URL(event.request.url).hostname) > -1) {
