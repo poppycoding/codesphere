@@ -9,6 +9,7 @@
 - 数据库相关
   - [MySQL](docs/db/mysql.md)
   - [MongoDB](docs/db/mongodb.md)
+  - [Elasticsearch](docs/db/elasticsearch.md)
 
 - Java 相关
   - [设计模式](docs/java/design-pattern.md)

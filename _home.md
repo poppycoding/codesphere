@@ -12,4 +12,4 @@
 
 **数据库相关**
 
-[MYSQL](docs/db/mysql.md) | [MongoDB](docs/db/mogondb.md)
+[MYSQL](docs/db/mysql.md) | [MongoDB](docs/db/mongodb.md)
