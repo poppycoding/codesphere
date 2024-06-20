@@ -4,7 +4,7 @@
 
 **AI 相关**
 
-[RAG](docs/ai/rag.md) | [Vector](docs/ai/vector.md)
+[OpenAI](docs/ai/openai.md)
 
 **架构相关**
 
@@ -12,4 +12,4 @@
 
 **数据库相关**
 
-[MYSQL](docs/db/mysql.md) | [MongoDB](docs/db/mongodb.md)
+ [Elasticsearch](docs/db/elasticsearch.md) | [MySQL](docs/db/mysql.md) | [MongoDB](docs/db/mongodb.md) | [Vector](docs/db/vector.md)

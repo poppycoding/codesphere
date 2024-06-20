@@ -1,6 +1,5 @@
 - AI 相关
-    - [RAG](docs/ai/rag.md)
-    - [向量数据](docs/ai/vector.md)
+    - [OpenAI](docs/ai/openai.md)
 
 - 架构相关
   - [DDD](docs/architecture/ddd.md)
@@ -10,6 +9,7 @@
   - [MySQL](docs/db/mysql.md)
   - [MongoDB](docs/db/mongodb.md)
   - [Elasticsearch](docs/db/elasticsearch.md)
+  - [向量数据](docs/db/vector.md)
 
 - Java 相关
   - [设计模式](docs/java/design-pattern.md)
