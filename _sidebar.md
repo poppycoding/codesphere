@@ -1,4 +1,5 @@
 - AI 相关
+    - [基础概念](docs/ai/base.md)
     - [OpenAI](docs/ai/openai.md)
 
 - 架构相关
