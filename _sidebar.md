@@ -7,6 +7,7 @@
   - [设计原则](docs/architecture/design-principle.md)
 
 - 数据库相关
+  - [基础概念](docs/db/base.md)
   - [MySQL](docs/db/mysql.md)
   - [MongoDB](docs/db/mongodb.md)
   - [Elasticsearch](docs/db/elasticsearch.md)
