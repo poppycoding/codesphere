@@ -227,7 +227,7 @@ BLIP (Bootstrapping Language-Image Pretraining) 是一种基于 Transformer 的�
 
 我们使用 HuggingFace 中的样例图片：
 
-![agent_1](../../static/ai/agent_1.png ':size=30%')
+![openai1](../../static/ai/openai1.png ':size=30%')
 
 使用上述代码，可以得到以下结果：
 
@@ -235,7 +235,7 @@ BLIP (Bootstrapping Language-Image Pretraining) 是一种基于 Transformer 的�
 
 **文案:** Cozy up with your favorite show and furry friends on the couch tonight：【今夜，拥暖 sofá，剧里春秋，枕边毛绒，皆是温柔】
 
-![agent_2](../../static/ai/agent_2.png)
+![openai2](../../static/ai/openai2.png)
 
 
 **总结**

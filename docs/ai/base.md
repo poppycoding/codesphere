@@ -56,3 +56,163 @@ TPU (Tensor Processing Unit，张量处理器) 是 Google 专为机器学习应�
 
 CPU、GPU 和 TPU 各有优缺点，在大模型领域扮演着不同的角色。CPU 适用于通用计算和内存密集型任务，GPU 是训练大型模型的首选，而 TPU 则提供了更高的计算效率和更低的功耗。随着硬件技术的不断发展，相信未来会出现更加强大和高效的算力引擎，进一步推动人工智能的进步。
 
+
+## CRISPE Framework：AI 提示工程
+
+你是否对 ChatGPT 充满好奇，却不知如何与它进行有效的交流？别担心，你不是一个人！许多初学者都面临着同样的挑战。为了帮助你更好地驾驭这个强大的 AI 工具，我们今天将介绍一个简单易懂的框架——CRISPE。
+
+### 引言
+ChatGPT 是一款先进的 AI 模型，它能理解和生成类似人类的文本。然而，要想充分发挥 ChatGPT 的优势，对于不太懂技术或刚接触 AI 的同学来说，可能会有一定难度。为了解决这个问题，CRISPE 提示词框架 应运而生，这个框架就像一把万能钥匙，可以打开 ChatGPT 无限潜能的大门。它提供了一套清晰的思路，帮助你构建高效的提示词，让 ChatGPT 更好地理解你的需求，并给出更精准的答案。
+
+### CRISPE 框架详解
+
+![0](../../static/ai/base/0.png)
+
+CRISPE 中的每个字母代表提示词中的关键组成部分：
+
+**能力与角色（Capacity and Role**
+在这个步骤中，需要定义你希望 ChatGPT 扮演的角色或能力。是想让 ChatGPT 作为文案写手？研究员？还是语言翻译？从一开始就明确这一点，有助于引导 AI 的回应。
+
+**背景信息（Insight）**
+这一部分需要提供任何必要的背景或上下文信息。ChatGPT 获取的相关细节越多，其回应就越准确和贴切。
+
+**指令（Statement）**
+这个元素是提示词的核心：要求 ChatGPT 做什么？问题越具体，回应就越精准。
+
+**个性（Personality）**
+希望 ChatGPT 在回应中表现出怎样的个性？应该是正式和商务化的，还是轻松和友好的？这个部分有助于赋予互动以个人色彩。
+
+**尝试（Experiment）**
+要求 ChatGPT 提供多个回应或示例，给我们生成多个选择。
+
+CRISPE 框架不是一个必须严格遵守的僵化结构。把它当作一套指导方针，根据我们具体的需求进行调整。
+
+例如，我们可以额外增加一个元素 O（Output）来要求 GPT 输出指定格式。
+
+### CRISPE 示例
+
+市面上的问答模型非常多， 大家可以根据使用习惯以及不同问题类型来对比选择，此处以 GPT 以及 Gemini 来演示效果。
+
+我们可以先让 GPT 帮我们按照提示词规则生成完整的提示词, 然后再用这个提示词去提问:
+
+![1](../../static/ai/base/1.png ':size=60%')
+
+
+#### 示例一：小红书创作文案 （GPT-4o）
+
+![2](../../static/ai/base/2.png ':size=60%')
+
+![3](../../static/ai/base/3.png ':size=60%')
+
+![4](../../static/ai/base/4.png ':size=60%')
+
+
+#### 示例二：英文翻译专家 （Gemini 1.5 Pro）
+
+![5](../../static/ai/base/6.png ':size=60%')
+
+![6](../../static/ai/base/7.png ':size=60%')
+
+
+### 提示词模版
+CRISPE 只是提示词的一种，还有很多优秀的的提示词模版，大家可以自行探索， 这里再推荐一个提示词网站 [snackprompt](https://snackprompt.com/)
+
+#### 示例一：精通各种编程语言的专家
+
+![7](../../static/ai/base/7.png ':size=60%')
+
+![8](../../static/ai/base/8.png ':size=60%')
+
+![9](../../static/ai/base/9.png ':size=60%')
+
+
+CAN: Understood. Here’s a summary of the requirements:
+
+1. The function should handle multi-page PDF files.
+2. The extracted text should preserve line breaks and spaces.
+3. No need to handle encrypted or password-protected PDF files.
+4. Use open-source libraries to perform the task.
+
+I will use the `pdfbox` library for Java and `PyMuPDF` (also known as `fitz`) for Python. Let's start with the Java implementation:
+
+### Java Implementation
+
+We'll use Apache PDFBox to extract text from a PDF file.
+
+First, add the dependency to your `pom.xml` if you're using Maven:
+```xml
+<dependency>
+    <groupId>org.apache.pdfbox</groupId>
+    <artifactId>pdfbox</artifactId>
+    <version>2.0.27</version>
+</dependency>
+```
+
+Here is the Java code to extract text from a PDF file:
+
+```java
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.text.PDFTextStripper;
+import java.io.File;
+import java.io.IOException;
+
+public class PDFTextExtractor {
+
+    public static String extractTextFromPDF(String filePath) {
+        String extractedText = "";
+        try (PDDocument document = PDDocument.load(new File(filePath))) {
+            PDFTextStripper pdfStripper = new PDFTextStripper();
+            extractedText = pdfStripper.getText(document);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return extractedText;
+    }
+
+    public static void main(String[] args) {
+        String filePath = "path/to/your/pdf/file.pdf";
+        String text = extractTextFromPDF(filePath);
+        System.out.println(text);
+    }
+}
+```
+
+### Python Implementation
+
+We'll use the PyMuPDF library (also known as fitz) to extract text from a PDF file.
+
+First, install the PyMuPDF library:
+```bash
+pip install PyMuPDF
+```
+
+Here is the Python code to extract text from a PDF file:
+
+```python
+import fitz  # PyMuPDF
+
+def extract_text_from_pdf(file_path):
+    text = ""
+    with fitz.open(file_path) as pdf_document:
+        for page_num in range(len(pdf_document)):
+            page = pdf_document.load_page(page_num)
+            text += page.get_text()
+    return text
+
+if __name__ == "__main__":
+    file_path = "path/to/your/pdf/file.pdf"
+    extracted_text = extract_text_from_pdf(file_path)
+    print(extracted_text)
+```
+
+These implementations should meet your requirements. Let me know if there are any adjustments or additional features you need!
+
+#### 示例二：私人教练
+
+还有一些更加详细的模版， 比如这种健身教练， 需要提供的上下文更加丰富， 那么得到的结果将更加精确可用，大家可自行尝试。
+
+![10](../../static/ai/base/10.png ':size=60%')
+
+
+### 总结
+提示词框架或者模版为 ChatGPT 的互动提供了一个结构化的方法，使得提示工程更加高效和精准。不论是初学者还是资深用户，都能通过这一框架更好地发挥 ChatGPT 的潜力。在使用过程中，我们可以根据实际需求灵活调整，并且选择多个大模型对比回答效果，最终选择相对完美的答案。
