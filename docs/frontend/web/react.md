@@ -229,10 +229,175 @@ class MyComponent extends React.Component {
 通过 `refs`，React 组件可以直接与 DOM 或子组件进行交互，实现复杂的 UI 逻辑。
 
 
+在 React 中，使用回调函数创建 `refs` 时，每次组件重新渲染都会触发该回调函数。这意味着回调函数可能被调用多次，而不是只在初次渲染时调用一次。这种情况有时会导致性能问题或意外的行为。
+
+### 回调函数创建 `refs` 的调用次数问题
+
+使用回调函数创建 `refs` 的典型方式如下：
+
+```javascript
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.myInputRef = null;
+  }
+
+  setMyInputRef = (element) => {
+    this.myInputRef = element;
+  }
+
+  render() {
+    return <input type="text" ref={this.setMyInputRef} />;
+  }
+}
+```
+
+在这个例子中，`setMyInputRef` 是一个回调函数，会在组件每次渲染时调用。当组件首次渲染时，回调函数会被调用，将 DOM 元素赋值给 `this.myInputRef`。但是，如果组件由于状态更新或父组件的重新渲染而重新渲染，那么回调函数将再次被调用。
+
+### 问题的具体表现
+
+1. **调用次数**：回调函数在组件挂载时会被调用一次，用来设置 `ref`，但在组件卸载时，回调函数会再次被调用，这次传入的是 `null`。如果组件频繁渲染，回调函数可能多次设置和清除 `ref`。
+
+2. **性能开销**：每次组件重新渲染时都触发 `ref` 回调函数，可能会引起额外的性能开销，特别是在复杂的 UI 中频繁渲染的组件。
+
+3. **不一致的状态**：由于 `ref` 的清除和重设，可能会在某些情况下导致状态不一致或意外的错误，尤其是在回调函数中执行了复杂逻辑时。
+
+### 使用 `createRef` 避免调用次数问题
+
+React 提供了 `createRef` 方法，从根本上解决了回调函数可能引发的调用次数问题。`createRef` 创建的 `ref` 对象在组件的整个生命周期中都是稳定的，不会因为组件的重新渲染而多次被触发或重新分配。
+
+使用 `createRef` 的典型方式如下：
+
+```javascript
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.myInputRef = React.createRef();
+  }
+
+  render() {
+    return <input type="text" ref={this.myInputRef} />;
+  }
+}
+```
+
+### 优点
+
+1. **稳定性**：`createRef` 创建的 `ref` 对象是稳定的，在整个组件生命周期内都是唯一且不变的。这避免了回调 `ref` 因组件的重新渲染而反复触发的情况。
+
+2. **性能**：使用 `createRef` 可以减少不必要的函数调用，因为它不会因为组件的重新渲染而多次创建或销毁 `ref`，从而降低性能开销。
+
+3. **简洁**：`createRef` 使用方式简洁明了，更容易理解和维护。
+
+### 何时使用回调 `refs`？
+
+尽管 `createRef` 是首选方式，但回调 `refs` 在某些情况下仍然有用，例如：
+- 当需要在 `ref` 设置时执行一些副作用（例如，执行动画、启动第三方库）时。
+- 需要动态地分配 `ref` 或者根据条件设置多个 `ref`。
+
+### 总结
+
+- **回调函数创建 `refs`** 的方式在组件每次渲染时都会触发，可能导致多次调用和性能问题。
+- **`React.createRef()`** 提供了一种更稳定、性能更优的方式来管理 `refs`，避免了不必要的重复调用，推荐在大多数情况下使用它。
+- 回调 `refs` 适用于需要在 `ref` 设置时立即执行额外逻辑的场景，但应谨慎使用以避免性能问题。
 
 
 
-react 通过事件避免 ref
+React 的事件机制是基于合成事件（Synthetic Event）实现的，这是一个跨浏览器的包装，提供了一个一致的 API，并优化了性能。通过这种机制，React 可以高效地处理事件，并且避免了对原生 DOM `ref` 的依赖，尤其是在处理事件时。
+
+### React 事件机制的工作原理
+
+1. **合成事件**：
+   React 使用合成事件来封装浏览器的原生事件，这意味着事件处理程序接收到的事件并不是原生的浏览器事件，而是一个合成事件对象。这个对象模仿了原生事件的接口，并且对所有浏览器都是统一的。
+
+2. **事件委托**：
+   React 并不直接将事件监听器附加到每个具体的 DOM 元素上，而是使用事件委托的方式将所有事件绑定到根节点（通常是 `document` 或者 `root` 元素）。当一个事件发生时，React 会根据事件类型将它委托到相应的合成事件处理程序，并逐层冒泡，找到需要处理的组件。
+
+3. **自动解绑**：
+   React 会在组件卸载时自动解绑相关的事件处理程序，这减少了内存泄漏的风险，并简化了事件的管理。
+
+### 如何避免使用 `ref`
+
+使用 `ref` 直接操作 DOM 是一种相对较低级的操作，通常用于需要访问或操作 DOM 元素的特殊情况。然而，在大多数情况下，React 的事件机制可以帮助我们避免直接使用 `ref`。以下是一些通过 React 事件机制避免使用 `ref` 的常见场景：
+
+1. **通过状态管理 DOM**：
+   在 React 中，组件的状态（`state`）通常用于管理和响应用户输入，而不是直接操作 DOM。例如，在表单中获取输入框的值，使用状态可以代替 `ref`。
+
+   示例：
+
+   ```javascript
+   class MyComponent extends React.Component {
+     constructor(props) {
+       super(props);
+       this.state = { inputValue: '' };
+     }
+
+     handleChange = (event) => {
+       this.setState({ inputValue: event.target.value });
+     }
+
+     render() {
+       return (
+         <input type="text" value={this.state.inputValue} onChange={this.handleChange} />
+       );
+     }
+   }
+   ```
+
+   在这个例子中，`input` 的值完全由组件的状态控制，避免了使用 `ref` 直接访问 DOM。
+
+2. **事件回调函数**：
+   React 的合成事件可以将事件对象传递给事件处理程序。通过事件对象，开发者可以访问事件的目标元素和相关信息，通常不需要 `ref`。
+
+   示例：
+
+   ```javascript
+   class MyComponent extends React.Component {
+     handleClick = (event) => {
+       console.log('Button clicked:', event.target);
+     }
+
+     render() {
+       return <button onClick={this.handleClick}>Click me</button>;
+     }
+   }
+   ```
+
+   在这个例子中，`event.target` 提供了对点击按钮的引用，而不需要通过 `ref` 来直接访问 DOM 元素。
+
+3. **使用 `key` 属性重新渲染**：
+   在某些情况下，开发者可能需要重置或刷新某个 DOM 元素，而不是直接操作它。这时可以通过改变元素的 `key` 属性来强制 React 重新渲染该元素，避免使用 `ref`。
+
+   示例：
+
+   ```javascript
+   class MyComponent extends React.Component {
+     state = { refresh: false };
+
+     toggleRefresh = () => {
+       this.setState({ refresh: !this.state.refresh });
+     }
+
+     render() {
+       return (
+         <div>
+           <input key={this.state.refresh ? 'input1' : 'input2'} type="text" />
+           <button onClick={this.toggleRefresh}>Refresh Input</button>
+         </div>
+       );
+     }
+   }
+   ```
+
+   每次点击按钮时，`key` 属性改变，React 会重新渲染 `input` 元素，而无需直接使用 `ref` 来手动控制。
+
+### 总结
+
+React 的事件机制通过合成事件、事件委托和状态管理，使得我们可以高效地处理用户交互，而无需直接操作 DOM，从而避免了对 `ref` 的频繁使用。通过管理状态和使用事件对象，大部分与用户交互相关的逻辑都可以在 React 的虚拟 DOM 层面处理，从而保持代码的简洁性和可维护性。
+
+
+
+
 
 受控组件和非受控组件
 
