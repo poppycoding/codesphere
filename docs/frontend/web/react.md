@@ -498,5 +498,97 @@ class MyComponent extends React.Component {
 
 
 
+### 高阶函数
 
-高阶函数和柯里化
+高阶函数（Higher-Order Function）是指接受函数作为参数或返回值为函数的函数。在 JavaScript 中，函数是一等公民，这意味着函数可以像其他数据类型一样传递、返回和操作。因此，高阶函数在 JavaScript 中非常常见，特别是在处理回调、函数组合、数组操作等场景中。
+
+#### 特点
+
+1. **接受函数作为参数**：高阶函数可以将函数作为输入参数，从而允许动态定义行为。例如，常见的 `map`、`filter` 和 `reduce` 等数组方法都是高阶函数。
+
+2. **返回函数作为结果**：高阶函数可以返回一个新函数作为结果，从而创建出新的函数行为。
+
+#### 示例
+
+```javascript
+// 接受函数作为参数
+function forEach(array, callback) {
+  for (let i = 0; i < array.length; i++) {
+    callback(array[i], i);
+  }
+}
+
+const numbers = [1, 2, 3, 4];
+forEach(numbers, (number, index) => {
+  console.log(`Index ${index}: ${number}`);
+});
+
+// 返回函数作为结果
+function createMultiplier(multiplier) {
+  return function(number) {
+    return number * multiplier;
+  };
+}
+
+const double = createMultiplier(2);
+console.log(double(5));  // 输出 10
+
+const triple = createMultiplier(3);
+console.log(triple(5));  // 输出 15
+```
+
+在第一个示例中，`forEach` 函数接受一个数组和回调函数作为参数，回调函数被应用到数组的每一个元素。在第二个示例中，`createMultiplier` 是一个高阶函数，它返回一个新的函数，这个新函数根据传入的乘数 `multiplier` 对给定的数字进行乘法运算。
+
+### 柯里化
+
+柯里化（Currying）是一个函数转换的技术，它将一个接受多个参数的函数转化为一系列接受单一参数的函数。通过柯里化，可以逐步传递参数，而不是一次性地传递所有参数，这对于函数复用和延迟计算非常有用。
+
+#### 特点
+
+1. **参数分步传递**：柯里化允许你将函数的参数分布在多个调用中逐步传递，而不是一次性传递所有参数。
+
+2. **生成特定功能的函数**：通过部分应用函数，可以生成一个带有特定参数的新的函数，这种方式有助于简化代码和增加可读性。
+
+#### 示例
+
+```javascript
+// 未柯里化的函数
+function add(a, b, c) {
+  return a + b + c;
+}
+
+console.log(add(1, 2, 3)); // 输出 6
+
+// 柯里化后的函数
+function curriedAdd(a) {
+  return function(b) {
+    return function(c) {
+      return a + b + c;
+    };
+  };
+}
+
+console.log(curriedAdd(1)(2)(3)); // 输出 6
+```
+
+在柯里化的示例中，`curriedAdd` 函数将原本的三参数函数 `add` 转换为一系列单参数函数的链式调用。通过这种方式，可以灵活地传递参数，甚至可以根据需要部分应用参数。例如：
+
+```javascript
+const addOne = curriedAdd(1);
+const addOneAndTwo = addOne(2);
+console.log(addOneAndTwo(3)); // 输出 6
+```
+
+在这个例子中，我们通过 `curriedAdd(1)` 创建了一个部分应用函数 `addOne`，然后再继续传递其他参数，逐步完成计算。
+
+### 应用场景
+
+- **高阶函数** 常用于需要动态定义行为的场景，比如事件处理、回调函数、函数组合等。
+- **柯里化** 常用于函数复用、部分应用参数、函数组合等场景，特别是在函数式编程中非常常见。
+
+### 总结
+
+- **高阶函数** 是接受函数作为参数或返回值为函数的函数，广泛用于数组操作、回调和函数组合。
+- **柯里化** 是将一个多参数函数转换为一系列单参数函数的技术，方便逐步传递参数和复用函数逻辑。
+
+这两者都是函数式编程的重要概念，能够极大提高代码的灵活性和可维护性。
