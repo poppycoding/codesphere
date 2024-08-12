@@ -397,8 +397,106 @@ React 的事件机制通过合成事件、事件委托和状态管理，使得�
 
 
 
+在 React 中，表单组件（如输入框、选择框、复选框等）可以通过两种方式进行管理：受控组件和非受控组件。这两种方式的区别主要在于组件的状态管理和数据流的控制方式。
+
+### 受控组件（Controlled Components）
+
+受控组件是指表单元素的值由 React 组件的状态（`state`）控制的组件。在受控组件中，表单元素的值和状态之间有明确的单向数据流，这意味着组件的状态总是与表单元素的值保持同步。
+
+#### 特点
+
+- **状态驱动**：表单元素的值完全由 React 组件的状态控制。用户输入会触发 `onChange` 事件，并更新组件的状态，随后组件根据新的状态重新渲染表单元素。
+- **单向数据流**：数据流从组件的状态到表单元素，再从用户的输入触发事件回到状态，这确保了 React 可以精确控制表单元素的值。
+- **便于验证和操作**：可以在输入过程中进行数据验证或处理，因为所有输入都必须经过 `onChange` 处理函数。
+
+#### 示例
+
+```javascript
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { value: '' };
+  }
+
+  handleChange = (event) => {
+    this.setState({ value: event.target.value });
+  }
+
+  handleSubmit = (event) => {
+    alert('Submitted value: ' + this.state.value);
+    event.preventDefault();
+  }
+
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <label>
+          Name:
+          <input type="text" value={this.state.value} onChange={this.handleChange} />
+        </label>
+        <button type="submit">Submit</button>
+      </form>
+    );
+  }
+}
+```
+
+在这个例子中，`input` 元素的值由组件的 `state.value` 决定，`onChange` 事件处理函数会更新状态，使得输入框中的内容与组件的状态保持同步。
+
+### 非受控组件（Uncontrolled Components）
+
+非受控组件是指表单元素的值不受 React 状态控制，而是直接通过 DOM 来管理的组件。在非受控组件中，表单元素的值保存在 DOM 中，而不是在 React 组件的状态中。
+
+#### 特点
+
+- **DOM 驱动**：表单元素的值由 DOM 本身管理，而不是通过 React 组件的状态。
+- **参考原生表单行为**：非受控组件类似于传统的 HTML 表单处理方式，可以使用 `ref` 来直接访问 DOM 元素的值。
+- **较少的代码和状态管理**：对于不需要严格控制输入值的场景，非受控组件更简单，代码量较少。
+
+#### 示例
+
+```javascript
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.inputRef = React.createRef();
+  }
+
+  handleSubmit = (event) => {
+    alert('Submitted value: ' + this.inputRef.current.value);
+    event.preventDefault();
+  }
+
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <label>
+          Name:
+          <input type="text" ref={this.inputRef} />
+        </label>
+        <button type="submit">Submit</button>
+      </form>
+    );
+  }
+}
+```
+
+在这个例子中，`input` 元素的值保存在 DOM 中，通过 `ref` 获取元素的值，而不涉及 React 组件的状态管理。
+
+### 何时使用受控组件 vs 非受控组件
+
+- **受控组件** 适用于需要精确控制输入值、实时验证、条件渲染、动态表单处理等场景。在大型应用或复杂表单中，受控组件更常见，因为它提供了更好的数据控制和验证机制。
+
+- **非受控组件** 适用于简单的、无需频繁交互的表单或场景，或者当你需要快速开发并且不需要对输入数据进行复杂操作时。它们更接近于传统的 HTML 表单处理方式，代码更简洁。
+
+### 总结
+
+- **受控组件** 通过 React 组件的状态控制表单元素的值，提供了强大的数据管理能力和灵活性。
+- **非受控组件** 依赖于 DOM 来管理表单元素的值，适合简单的场景或快速开发。
+
+理解这两种方式及其适用场景，可以帮助开发者在不同的项目中选择最佳的表单处理策略。
 
 
-受控组件和非受控组件
+
 
 高阶函数和柯里化
