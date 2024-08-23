@@ -830,3 +830,96 @@ componentDidUpdate(prevProps) {
 ###  ✏️  总结:
 
 React 新生命周期的引入是为了适应异步渲染机制，简化代码，并提高应用性能。 了解新旧生命周期的差异，以及如何迁移到新的生命周期方法，对于构建高效、稳定的 React 应用至关重要。
+
+
+## 🌟  主题: 深入 React 生命周期：getDerivedStateFromProps 与 getSnapshotBeforeUpdate 的奥秘
+
+### 💡 引言:
+
+在 React 组件的生命周期中， `getDerivedStateFromProps` 和 `getSnapshotBeforeUpdate` 扮演着独特的角色，它们赋予开发者在组件渲染前后精细控制组件状态和行为的能力。本文将深入剖析这两个生命周期函数的原理、应用场景以及使用技巧。
+
+### 💻 技术原理:
+
+#### 1. `getDerivedStateFromProps(nextProps, prevState)`:
+
+- **调用时机：** 在组件实例化和组件接收新的 props 时被调用。
+- **作用：** 根据传入的 props 计算并返回一个对象来更新组件的 state。
+- **特点：**
+    - 静态方法，无法访问 `this`。
+    - 每次渲染都会被调用，需要谨慎使用，避免不必要的 state 更新。
+
+#### 2. `getSnapshotBeforeUpdate(prevProps, prevState)`:
+
+- **调用时机：** 在 `render` 函数执行完毕后，真实的 DOM 更新之前被调用。
+- **作用：** 获取即将被更新的 DOM 信息，例如滚动位置、输入框内容等。
+- **返回值：** 返回值将作为参数传递给 `componentDidUpdate`。
+
+### 🧐 示例讲解:
+
+#### 1. `getDerivedStateFromProps` 示例：
+
+```javascript
+class MyComponent extends React.Component {
+  state = {
+    message: '',
+  };
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.message !== prevState.message) {
+      return { message: nextProps.message.toUpperCase() };
+    }
+    return null;
+  }
+
+  render() {
+    return <div>{this.state.message}</div>;
+  }
+}
+```
+
+**代码解析：** 每次 `MyComponent` 接收新的 `message` props 时，`getDerivedStateFromProps` 都会将 `message`  转换为大写并更新到 state 中。
+
+#### 2. `getSnapshotBeforeUpdate` 示例：
+
+```javascript
+class MyComponent extends React.Component {
+  // ...
+
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    if (prevProps.list.length < this.props.list.length) {
+      return this.listRef.current.scrollHeight; // 获取更新前列表的高度
+    }
+    return null;
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (snapshot !== null) {
+      this.listRef.current.scrollTop = snapshot; // 保持列表滚动位置
+    }
+  }
+
+  render() {
+    return (
+      <div ref={this.listRef}>
+        {/* ... 列表内容 ... */}
+      </div>
+    );
+  }
+}
+```
+
+**代码解析：** 当列表新增数据时，`getSnapshotBeforeUpdate`  记录更新前的列表高度，并在 `componentDidUpdate` 中恢复滚动位置，防止页面跳动。
+
+### 🚀 应用场景:
+
+* `getDerivedStateFromProps`：
+    - 需要根据 props 计算 state，例如根据用户权限展示不同的 UI 界面。
+    - 需要在 props 更新时重置 state。
+* `getSnapshotBeforeUpdate`：
+    - 需要在 DOM 更新前后获取或操作 DOM 信息，例如保持滚动位置、处理动画等。
+
+###  ✏️  总结:
+
+`getDerivedStateFromProps` 和 `getSnapshotBeforeUpdate`  为开发者提供了更精细的组件状态和行为控制能力。理解它们的工作机制和应用场景，可以帮助我们编写更加健壮、高效的 React 组件。
+
+
